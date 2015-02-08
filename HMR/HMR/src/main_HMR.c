@@ -27,11 +27,11 @@ int main(void)
 	while(1)
 	{
 		
-		uint16_t ADC_read();
-		uart_print("Fata!\r\n");
-		_delay_ms(1000);
-		uart_print("Spate!\r\n");
-		_delay_ms(1000);
+		//uint16_t ADC_read();
+		//uart_print("Fata!\r\n");
+		//_delay_ms(1000);
+		//uart_print("Spate!\r\n");
+		//_delay_ms(1000);
 		
 	}
 }

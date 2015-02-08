@@ -3,7 +3,7 @@ Archive member included because of file (symbol)
 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
                               d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32u4.o (exit)
 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
-                              src/main_HMR.o (__do_copy_data)
+                              src/pwm.o (__do_copy_data)
 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
                               src/usart.o (__do_clear_bss)
 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_umulhisi3.o)
@@ -263,7 +263,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x20a
+.text           0x00000000      0x1d6
  *(.vectors)
  .vectors       0x00000000       0xac d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32u4.o
                 0x00000000                __vector_default
@@ -365,28 +365,28 @@ END GROUP
                 0x000000e6                __vector_42
                 0x000000ea                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x000000ea       0x42 src/main_HMR.o
+ .text.main     0x000000ea        0xe src/main_HMR.o
                 0x000000ea                main
  .text.pwm_init
-                0x0000012c       0x4a src/pwm.o
-                0x0000012c                pwm_init
+                0x000000f8       0x4a src/pwm.o
+                0x000000f8                pwm_init
  .text.uart_transmit
-                0x00000176       0x10 src/usart.o
-                0x00000176                uart_transmit
+                0x00000142       0x10 src/usart.o
+                0x00000142                uart_transmit
  .text.uart_print
-                0x00000186       0x44 src/usart.o
-                0x00000186                uart_print
+                0x00000152       0x44 src/usart.o
+                0x00000152                uart_print
  .text.uart_init
-                0x000001ca       0x22 src/usart.o
-                0x000001ca                uart_init
+                0x00000196       0x22 src/usart.o
+                0x00000196                uart_init
  .text.uart_flush
-                0x000001ec       0x1a src/usart.o
-                0x000001ec                uart_flush
-                0x00000206                . = ALIGN (0x2)
+                0x000001b8       0x1a src/usart.o
+                0x000001b8                uart_flush
+                0x000001d2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000206        0x0 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
-                0x00000206                _exit
-                0x00000206                exit
+ .fini9         0x000001d2        0x0 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+                0x000001d2                _exit
+                0x000001d2                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -405,40 +405,39 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000206        0x4 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+ .fini0         0x000001d2        0x4 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000020a                _etext = .
+                0x000001d6                _etext = .
 
-.data           0x00800100       0x30 load address 0x0000020a
+.data           0x00800100       0x20 load address 0x000001d6
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800100       0x11 src/main_HMR.o
- .rodata.str1.1
-                0x00800111       0x1f src/pwm.o
+                0x00800100       0x1f src/pwm.o
  *(.gnu.linkonce.d*)
-                0x00800130                . = ALIGN (0x2)
-                0x00800130                _edata = .
-                0x00800130                PROVIDE (__data_end, .)
+                0x00800120                . = ALIGN (0x2)
+ *fill*         0x0080011f        0x1 
+                0x00800120                _edata = .
+                0x00800120                PROVIDE (__data_end, .)
 
-.bss            0x00800130        0x0
-                0x00800130                PROVIDE (__bss_start, .)
+.bss            0x00800120        0x0
+                0x00800120                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
-                0x00800130                PROVIDE (__bss_end, .)
-                0x0000020a                __data_load_start = LOADADDR (.data)
-                0x0000023a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800120                PROVIDE (__bss_end, .)
+                0x000001d6                __data_load_start = LOADADDR (.data)
+                0x000001f6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800130        0x0
-                0x00800130                PROVIDE (__noinit_start, .)
+.noinit         0x00800120        0x0
+                0x00800120                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800130                PROVIDE (__noinit_end, .)
-                0x00800130                _end = .
-                0x00800130                PROVIDE (__heap_start, .)
+                0x00800120                PROVIDE (__noinit_end, .)
+                0x00800120                _end = .
+                0x00800120                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -511,23 +510,23 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x68a
+.debug_info     0x00000000      0x54f
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x1ea src/main_HMR.o
- .debug_info    0x000001ea      0x19c src/pwm.o
- .debug_info    0x00000386      0x304 src/usart.o
+ .debug_info    0x00000000       0xaf src/main_HMR.o
+ .debug_info    0x000000af      0x19c src/pwm.o
+ .debug_info    0x0000024b      0x304 src/usart.o
 
-.debug_abbrev   0x00000000      0x404
+.debug_abbrev   0x00000000      0x321
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x15b src/main_HMR.o
- .debug_abbrev  0x0000015b       0xd2 src/pwm.o
- .debug_abbrev  0x0000022d      0x1d7 src/usart.o
+ .debug_abbrev  0x00000000       0x78 src/main_HMR.o
+ .debug_abbrev  0x00000078       0xd2 src/pwm.o
+ .debug_abbrev  0x0000014a      0x1d7 src/usart.o
 
-.debug_line     0x00000000      0x381
+.debug_line     0x00000000      0x2ac
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x12b src/main_HMR.o
- .debug_line    0x0000012b       0xee src/pwm.o
- .debug_line    0x00000219      0x168 src/usart.o
+ .debug_line    0x00000000       0x56 src/main_HMR.o
+ .debug_line    0x00000056       0xee src/pwm.o
+ .debug_line    0x00000144      0x168 src/usart.o
 
 .debug_frame    0x00000000      0x13c
  *(.debug_frame)
@@ -535,13 +534,13 @@ END GROUP
  .debug_frame   0x00000024       0x64 src/pwm.o
  .debug_frame   0x00000088       0xb4 src/usart.o
 
-.debug_str      0x00000000      0x264
+.debug_str      0x00000000      0x210
  *(.debug_str)
- .debug_str     0x00000000      0x176 src/main_HMR.o
-                                0x1af (size before relaxing)
- .debug_str     0x00000176       0x4f src/pwm.o
+ .debug_str     0x00000000      0x10e src/main_HMR.o
+                                0x147 (size before relaxing)
+ .debug_str     0x0000010e       0x63 src/pwm.o
                                 0x189 (size before relaxing)
- .debug_str     0x000001c5       0x9f src/usart.o
+ .debug_str     0x00000171       0x9f src/usart.o
                                 0x1e9 (size before relaxing)
 
 .debug_loc      0x00000000      0x186
