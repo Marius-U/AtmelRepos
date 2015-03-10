@@ -24,7 +24,7 @@ void pwm_init()
 	TCCR1B |= (1 << CS10);
 	ICR1=0xFF;
 	uart_print("PWM initialization finished!\r\n");
-	uart_flush();
+	//uart_flush();
 	
 }
 void forward(uint8_t value)
@@ -49,9 +49,21 @@ void backwords(uint8_t value)
 }
 void left_f(uint8_t value, uint8_t direction)
 {
-	
+		OCR1A = 0;
+		OCR1B = value;
+		
+		PORTC |= (1 << PORTC7);
+		PORTB |= (1 << PORTB7);
+		PORTF &= ~(1 << PORTF7);
+		PORTB &= ~(1 << PORTB4);
 }
 void right(uint8_t value, uint8_t direction)
 {
-	
+		OCR1A = value;
+		OCR1B = 0;
+		
+		PORTC |= (1 << PORTC7);
+		PORTB |= (1 << PORTB7);
+		PORTF &= ~(1 << PORTF7);
+		PORTB &= ~(1 << PORTB4);
 }

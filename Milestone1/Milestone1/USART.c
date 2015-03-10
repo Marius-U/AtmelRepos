@@ -1,9 +1,9 @@
 /*
- * usart.c
+ * USART.c
  *
- * Created: 2/8/2015 4:23:50 PM
+ * Created: 3/10/2015 11:41:55 PM
  *  Author: Marius
- */ 
+ */
 #include <avr/io.h>
 #include <stdlib.h>
 #include <string.h>
@@ -62,10 +62,10 @@ unsigned char uart_receive(void)
 }
 
 // init uart
-void uart_init(void)
+void uart_init(uint8_t baud)
 {
 	// set baud rate
-	unsigned int baud = 16u;//BAUD_PRESCALE;
+	//unsigned int baud = 16u;//BAUD_PRESCALE;
 	
 	UBRR1H = (unsigned char) (baud >> 8 );
 	UBRR1L = (unsigned char)baud;

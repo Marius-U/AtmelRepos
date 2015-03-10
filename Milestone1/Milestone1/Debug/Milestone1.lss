@@ -1,0 +1,321 @@
+
+Milestone1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000002  00800100  000001ac  00000220  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000001ac  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000222  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000078  00000000  00000000  00000252  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   000004bb  00000000  00000000  000002ca  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000002ea  00000000  00000000  00000785  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000286  00000000  00000000  00000a6f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  000000cc  00000000  00000000  00000cf8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000022b  00000000  00000000  00000dc4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    00000242  00000000  00000000  00000fef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000058  00000000  00000000  00001231  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 56 00 	jmp	0xac	; 0xac <__ctors_end>
+   4:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+   8:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+   c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  10:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  14:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  18:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  1c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  20:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  24:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  28:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  2c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  30:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  34:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  38:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  3c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  40:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  44:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  48:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  4c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  50:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  54:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  58:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  5c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  60:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  64:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  68:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  6c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  70:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  74:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  78:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  7c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  80:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  84:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  88:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  8c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  90:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  94:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  98:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  9c:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  a0:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  a4:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+  a8:	0c 94 73 00 	jmp	0xe6	; 0xe6 <__bad_interrupt>
+
+000000ac <__ctors_end>:
+  ac:	11 24       	eor	r1, r1
+  ae:	1f be       	out	0x3f, r1	; 63
+  b0:	cf ef       	ldi	r28, 0xFF	; 255
+  b2:	da e0       	ldi	r29, 0x0A	; 10
+  b4:	de bf       	out	0x3e, r29	; 62
+  b6:	cd bf       	out	0x3d, r28	; 61
+
+000000b8 <__do_copy_data>:
+  b8:	11 e0       	ldi	r17, 0x01	; 1
+  ba:	a0 e0       	ldi	r26, 0x00	; 0
+  bc:	b1 e0       	ldi	r27, 0x01	; 1
+  be:	ec ea       	ldi	r30, 0xAC	; 172
+  c0:	f1 e0       	ldi	r31, 0x01	; 1
+  c2:	02 c0       	rjmp	.+4      	; 0xc8 <__do_copy_data+0x10>
+  c4:	05 90       	lpm	r0, Z+
+  c6:	0d 92       	st	X+, r0
+  c8:	a2 30       	cpi	r26, 0x02	; 2
+  ca:	b1 07       	cpc	r27, r17
+  cc:	d9 f7       	brne	.-10     	; 0xc4 <__do_copy_data+0xc>
+
+000000ce <__do_clear_bss>:
+  ce:	21 e0       	ldi	r18, 0x01	; 1
+  d0:	a2 e0       	ldi	r26, 0x02	; 2
+  d2:	b1 e0       	ldi	r27, 0x01	; 1
+  d4:	01 c0       	rjmp	.+2      	; 0xd8 <.do_clear_bss_start>
+
+000000d6 <.do_clear_bss_loop>:
+  d6:	1d 92       	st	X+, r1
+
+000000d8 <.do_clear_bss_start>:
+  d8:	a2 30       	cpi	r26, 0x02	; 2
+  da:	b2 07       	cpc	r27, r18
+  dc:	e1 f7       	brne	.-8      	; 0xd6 <.do_clear_bss_loop>
+  de:	0e 94 75 00 	call	0xea	; 0xea <main>
+  e2:	0c 94 d4 00 	jmp	0x1a8	; 0x1a8 <_exit>
+
+000000e6 <__bad_interrupt>:
+  e6:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000ea <main>:
+#include <util/delay.h>
+
+int main(void)
+{
+	uint8_t flag = 0;
+	DDRD |= (1 << DDD6) | (1 << DDD7);
+  ea:	8a b1       	in	r24, 0x0a	; 10
+  ec:	80 6c       	ori	r24, 0xC0	; 192
+  ee:	8a b9       	out	0x0a, r24	; 10
+	
+   DDRB &= ~(1 << DDB5);              // Clear the PB5 pin
+  f0:	25 98       	cbi	0x04, 5	; 4
+   // PB5 is now an input
+
+  // PORTB |= (1 << PORTB5);             // turn On the Pull-up enabled
+   // PB5 is now an input with pull-up enabled
+   
+	PORTD |= (1 << PORTD6);
+  f2:	5e 9a       	sbi	0x0b, 6	; 11
+	uart_init(207);
+  f4:	8f ec       	ldi	r24, 0xCF	; 207
+  f6:	0e 94 c4 00 	call	0x188	; 0x188 <uart_init>
+#define F_CPU 16000000UL
+#include <util/delay.h>
+
+int main(void)
+{
+	uint8_t flag = 0;
+  fa:	c0 e0       	ldi	r28, 0x00	; 0
+			   {
+				   //Send with baud = 115200
+				   uart_init(16);
+				   PORTD |= (1 << PORTD7);
+				   PORTD &= ~(1 << PORTD6);
+				   flag = 1;
+  fc:	11 e0       	ldi	r17, 0x01	; 1
+			   {
+				   //Send with baud = 9600
+				   uart_init(207);
+				   PORTD |= (1 << PORTD6);
+				   PORTD &= ~(1 << PORTD7);
+				   flag = 0;
+  fe:	d0 e0       	ldi	r29, 0x00	; 0
+   
+	PORTD |= (1 << PORTD6);
+	uart_init(207);
+   while (1)
+   {
+	   if( (PINB & (1 << PINB5)) == 0)    //is the pin set
+ 100:	1d 99       	sbic	0x03, 5	; 3
+ 102:	1a c0       	rjmp	.+52     	; 0x138 <main+0x4e>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 104:	2f ef       	ldi	r18, 0xFF	; 255
+ 106:	86 e7       	ldi	r24, 0x76	; 118
+ 108:	91 e0       	ldi	r25, 0x01	; 1
+ 10a:	21 50       	subi	r18, 0x01	; 1
+ 10c:	80 40       	sbci	r24, 0x00	; 0
+ 10e:	90 40       	sbci	r25, 0x00	; 0
+ 110:	e1 f7       	brne	.-8      	; 0x10a <main+0x20>
+ 112:	00 c0       	rjmp	.+0      	; 0x114 <main+0x2a>
+ 114:	00 00       	nop
+	   {
+		   _delay_ms(30); //wait a 30ms
+			 while((PINB & (1 << PINB5)) == 0);
+ 116:	1d 9b       	sbis	0x03, 5	; 3
+ 118:	fe cf       	rjmp	.-4      	; 0x116 <main+0x2c>
+			   if(flag)
+ 11a:	cc 23       	and	r28, r28
+ 11c:	39 f0       	breq	.+14     	; 0x12c <main+0x42>
+			   {
+				   //Send with baud = 9600
+				   uart_init(207);
+ 11e:	8f ec       	ldi	r24, 0xCF	; 207
+ 120:	0e 94 c4 00 	call	0x188	; 0x188 <uart_init>
+				   PORTD |= (1 << PORTD6);
+ 124:	5e 9a       	sbi	0x0b, 6	; 11
+				   PORTD &= ~(1 << PORTD7);
+ 126:	5f 98       	cbi	0x0b, 7	; 11
+				   flag = 0;
+ 128:	cd 2f       	mov	r28, r29
+ 12a:	06 c0       	rjmp	.+12     	; 0x138 <main+0x4e>
+			   }
+			   else
+			   {
+				   //Send with baud = 115200
+				   uart_init(16);
+ 12c:	80 e1       	ldi	r24, 0x10	; 16
+ 12e:	0e 94 c4 00 	call	0x188	; 0x188 <uart_init>
+				   PORTD |= (1 << PORTD7);
+ 132:	5f 9a       	sbi	0x0b, 7	; 11
+				   PORTD &= ~(1 << PORTD6);
+ 134:	5e 98       	cbi	0x0b, 6	; 11
+				   flag = 1;
+ 136:	c1 2f       	mov	r28, r17
+			   }
+	   }
+	   uart_print("A");
+ 138:	80 e0       	ldi	r24, 0x00	; 0
+ 13a:	91 e0       	ldi	r25, 0x01	; 1
+ 13c:	0e 94 a9 00 	call	0x152	; 0x152 <uart_print>
+   }
+ 140:	df cf       	rjmp	.-66     	; 0x100 <main+0x16>
+
+00000142 <uart_transmit>:
+
+// transmit a char to uart
+void uart_transmit( unsigned char data )
+{
+	// wait for empty transmit buffer
+	while ( ! ( UCSR1A & ( 1 << UDRE1 ) ) )
+ 142:	e8 ec       	ldi	r30, 0xC8	; 200
+ 144:	f0 e0       	ldi	r31, 0x00	; 0
+ 146:	90 81       	ld	r25, Z
+ 148:	95 ff       	sbrs	r25, 5
+ 14a:	fd cf       	rjmp	.-6      	; 0x146 <uart_transmit+0x4>
+	;
+	
+	// put data into buffer, sends data
+	UDR1 = data;
+ 14c:	80 93 ce 00 	sts	0x00CE, r24
+ 150:	08 95       	ret
+
+00000152 <uart_print>:
+}
+// write a string to the uart
+void uart_print( char data[] )
+{
+ 152:	0f 93       	push	r16
+ 154:	1f 93       	push	r17
+ 156:	cf 93       	push	r28
+ 158:	df 93       	push	r29
+	uint8_t count = 0;
+	uint8_t length = strlen(data);
+ 15a:	fc 01       	movw	r30, r24
+ 15c:	01 90       	ld	r0, Z+
+ 15e:	00 20       	and	r0, r0
+ 160:	e9 f7       	brne	.-6      	; 0x15c <uart_print+0xa>
+ 162:	31 97       	sbiw	r30, 0x01	; 1
+ 164:	1e 2f       	mov	r17, r30
+ 166:	18 1b       	sub	r17, r24
+	
+	for ( count = 0; count < length; count++ )
+ 168:	51 f0       	breq	.+20     	; 0x17e <uart_print+0x2c>
+ 16a:	08 2f       	mov	r16, r24
+ 16c:	c0 2f       	mov	r28, r16
+ 16e:	d9 2f       	mov	r29, r25
+	uart_transmit(data[count]);
+ 170:	89 91       	ld	r24, Y+
+ 172:	0e 94 a1 00 	call	0x142	; 0x142 <uart_transmit>
+ 176:	8c 2f       	mov	r24, r28
+ 178:	80 1b       	sub	r24, r16
+void uart_print( char data[] )
+{
+	uint8_t count = 0;
+	uint8_t length = strlen(data);
+	
+	for ( count = 0; count < length; count++ )
+ 17a:	81 17       	cp	r24, r17
+ 17c:	c8 f3       	brcs	.-14     	; 0x170 <uart_print+0x1e>
+	uart_transmit(data[count]);
+}
+ 17e:	df 91       	pop	r29
+ 180:	cf 91       	pop	r28
+ 182:	1f 91       	pop	r17
+ 184:	0f 91       	pop	r16
+ 186:	08 95       	ret
+
+00000188 <uart_init>:
+void uart_init(uint8_t baud)
+{
+	// set baud rate
+	//unsigned int baud = 16u;//BAUD_PRESCALE;
+	
+	UBRR1H = (unsigned char) (baud >> 8 );
+ 188:	10 92 cd 00 	sts	0x00CD, r1
+	UBRR1L = (unsigned char)baud;
+ 18c:	80 93 cc 00 	sts	0x00CC, r24
+	UCSR1A |= (1 << U2X1);
+ 190:	e8 ec       	ldi	r30, 0xC8	; 200
+ 192:	f0 e0       	ldi	r31, 0x00	; 0
+ 194:	80 81       	ld	r24, Z
+ 196:	82 60       	ori	r24, 0x02	; 2
+ 198:	80 83       	st	Z, r24
+	
+	// enable received and transmitter
+	UCSR1B = ( 1 << RXEN1 ) | ( 1 << TXEN1 );
+ 19a:	88 e1       	ldi	r24, 0x18	; 24
+ 19c:	80 93 c9 00 	sts	0x00C9, r24
+	
+	// set frame format ( 8data, 1stop )
+	UCSR1C = (1 << UCSZ10) | (1 << UCSZ11);
+ 1a0:	86 e0       	ldi	r24, 0x06	; 6
+ 1a2:	80 93 ca 00 	sts	0x00CA, r24
+ 1a6:	08 95       	ret
+
+000001a8 <_exit>:
+ 1a8:	f8 94       	cli
+
+000001aa <__stop_program>:
+ 1aa:	ff cf       	rjmp	.-2      	; 0x1aa <__stop_program>

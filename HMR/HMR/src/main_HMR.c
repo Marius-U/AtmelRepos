@@ -17,21 +17,19 @@
 #include "pwm.h"
 
 
+
 int main(void)
 {
 	cli();
 	uart_init();
 	pwm_init();
 	sei();
+
 	
 	while(1)
 	{
-		
-		//uint16_t ADC_read();
-		//uart_print("Fata!\r\n");
-		//_delay_ms(1000);
-		//uart_print("Spate!\r\n");
-		//_delay_ms(1000);
-		
+		uart_print("Periodical de 2 secunde!\r\n");
+		_delay_ms(2000);
+	
 	}
 }
