@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>6.2</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
-    <ProjectGuid>{5142e228-acfd-4259-a680-5750aca1eefe}</ProjectGuid>
+    <ProjectGuid>{2575fc02-338b-4a40-9a4d-346f42f31a5f}</ProjectGuid>
     <avrdevice>ATmega32U4</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
@@ -12,20 +12,20 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>HMR</AssemblyName>
-    <Name>HMR</Name>
-    <RootNamespace>HMR</RootNamespace>
+    <AssemblyName>Piatra</AssemblyName>
+    <Name>Piatra</Name>
+    <RootNamespace>Piatra</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <RamSnippetAddress />
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <OverrideVtorValue />
     <BootSegment>2</BootSegment>
-    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <eraseonlaunchrule>1</eraseonlaunchrule>
     <AsfFrameworkConfig>
       <framework-data xmlns="">
         <options />
@@ -96,30 +96,46 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="src\adc.c">
+    <Compile Include="Headers\ADC.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\adc.h">
+    <Compile Include="Headers\Armanag.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\main_HMR.c">
+    <Compile Include="Headers\Interrupts.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\pwm.c">
+    <Compile Include="Headers\main.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\pwm.h">
+    <Compile Include="Headers\pwm.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\usart.c">
+    <Compile Include="Headers\usart.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\usart.h">
+    <Compile Include="Source\adc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\Armanag.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\Interrupts.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\pwm.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\usart.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src" />
+    <Folder Include="Headers" />
+    <Folder Include="Source" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Piatra", "Piatra\Piatra.cproj", "{2575FC02-338B-4A40-9A4D-346F42F31A5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2575FC02-338B-4A40-9A4D-346F42F31A5F}.Debug|AVR.ActiveCfg = Debug|AVR
+		{2575FC02-338B-4A40-9A4D-346F42F31A5F}.Debug|AVR.Build.0 = Debug|AVR
+		{2575FC02-338B-4A40-9A4D-346F42F31A5F}.Release|AVR.ActiveCfg = Release|AVR
+		{2575FC02-338B-4A40-9A4D-346F42F31A5F}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
