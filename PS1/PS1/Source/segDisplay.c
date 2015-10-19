@@ -6,17 +6,27 @@
  */ 
 #include <avr/io.h>
 #include "D:\AtmelRepos\PS1\PS1\Header\segDisplay.h"
+#include "D:\AtmelRepos\PS1\PS1\Header\eeprom.h"
 
 const uint8_t segDisplay[10] = {0x3Fu, 0x06u, 0x1Bu, 0x0Fu, 0x26u, 0x2Du, 0x3D, 0x07u, 0x3F, 0x2F};
-
+volatile uint8_t buttonCount = 0x00u;
 void display(uint8_t value)
 {
 	clear();
-	if((value != 0x00) & (value != 0x01) & (value != 0x07))
+	if(value < 10)
 	{
-		PORTD |= (1 << PORTD6);
+		if((value != 0x00) & (value != 0x01) & (value != 0x07))
+		{
+			PORTD |= (1 << PORTD6);
+		}
+		PORTB |= segDisplay[value];
 	}
-	PORTB |= segDisplay[value];
+	else
+	{
+		PORTB |= segDisplay[0x00u];
+		buttonCount = 0x00;
+		eeprom_write(0x00u,0x00u);
+	}
 }
 void clear()
 {

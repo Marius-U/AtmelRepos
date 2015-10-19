@@ -3,27 +3,29 @@ PS1.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000000a  00800100  000001e8  0000025c  2**0
+  0 .data         0000000a  00800100  0000030a  0000039e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000001e8  00000000  00000000  00000074  2**1
+  1 .text         0000030a  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000266  2**0
+  2 .bss          00000002  0080010a  0080010a  000003a8  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000003a8  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 00000098  00000000  00000000  00000296  2**0
+  4 .debug_aranges 00000100  00000000  00000000  000003d8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   000003e2  00000000  00000000  0000032e  2**0
+  5 .debug_info   0000073c  00000000  00000000  000004d8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 0000027a  00000000  00000000  00000710  2**0
+  6 .debug_abbrev 0000047e  00000000  00000000  00000c14  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   000002e3  00000000  00000000  0000098a  2**0
+  7 .debug_line   00000508  00000000  00000000  00001092  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  00000114  00000000  00000000  00000c70  2**2
+  8 .debug_frame  0000021c  00000000  00000000  0000159c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    000001f5  00000000  00000000  00000d84  2**0
+  9 .debug_str    00000287  00000000  00000000  000017b8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00000117  00000000  00000000  00000f79  2**0
+ 10 .debug_loc    000002e5  00000000  00000000  00001a3f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000068  00000000  00000000  00001090  2**0
+ 11 .debug_ranges 000000b0  00000000  00000000  00001d24  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -32,18 +34,18 @@ Disassembly of section .text:
    0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
    4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
    8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-   c:	0c 94 81 00 	jmp	0x102	; 0x102 <__vector_3>
-  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 a0 00 	jmp	0x140	; 0x140 <__vector_4>
   14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  2c:	0c 94 6f 00 	jmp	0xde	; 0xde <__vector_11>
+  2c:	0c 94 61 00 	jmp	0xc2	; 0xc2 <__vector_11>
   30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 70 00 	jmp	0xe0	; 0xe0 <__vector_14>
   3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -68,8 +70,8 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e8 ee       	ldi	r30, 0xE8	; 232
-  7c:	f1 e0       	ldi	r31, 0x01	; 1
+  7a:	ea e0       	ldi	r30, 0x0A	; 10
+  7c:	f3 e0       	ldi	r31, 0x03	; 3
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
@@ -87,136 +89,110 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	aa 30       	cpi	r26, 0x0A	; 10
+  94:	ac 30       	cpi	r26, 0x0C	; 12
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
   9a:	0e 94 53 00 	call	0xa6	; 0xa6 <main>
-  9e:	0c 94 f2 00 	jmp	0x1e4	; 0x1e4 <_exit>
+  9e:	0c 94 83 01 	jmp	0x306	; 0x306 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000000a6 <main>:
-#include "Header/segDisplay.h"
-
-volatile uint8_t blink = 0x00u;
+#include "Header/util.h"
+#include "D:/AtmelRepos/PS1/PS1/Header/eeprom.h"
+volatile uint8_t count = 0x00u;
 int main(void)
 {	
 	initDisplay();
-  a6:	0e 94 a0 00 	call	0x140	; 0x140 <initDisplay>
+  a6:	0e 94 02 01 	call	0x204	; 0x204 <initDisplay>
 	initButtonISR();
-  aa:	0e 94 c4 00 	call	0x188	; 0x188 <initButtonISR>
+  aa:	0e 94 39 01 	call	0x272	; 0x272 <initButtonISR>
 	initLeds();
-  ae:	0e 94 a7 00 	call	0x14e	; 0x14e <initLeds>
-	initTimer();
-  b2:	0e 94 ae 00 	call	0x15c	; 0x15c <initTimer>
-	
-	uint8_t i = 0;
-  b6:	c0 e0       	ldi	r28, 0x00	; 0
-			display(i);
-			i++;
-		}
-		else
-		{
-			i = 0x00;
-  b8:	d0 e0       	ldi	r29, 0x00	; 0
-  ba:	01 c0       	rjmp	.+2      	; 0xbe <main+0x18>
-  bc:	cd 2f       	mov	r28, r29
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
+  ae:	0e 94 0f 01 	call	0x21e	; 0x21e <initLeds>
+	initTimerB(0xF424u);
+  b2:	84 e2       	ldi	r24, 0x24	; 36
+  b4:	94 ef       	ldi	r25, 0xF4	; 244
+  b6:	0e 94 16 01 	call	0x22c	; 0x22c <initTimerB>
+	initTimerA(0xFFu);	
+  ba:	8f ef       	ldi	r24, 0xFF	; 255
+  bc:	0e 94 2a 01 	call	0x254	; 0x254 <initTimerA>
+  c0:	ff cf       	rjmp	.-2      	; 0xc0 <main+0x1a>
 
-	__builtin_avr_delay_cycles(__ticks_dc);
-  be:	2f ef       	ldi	r18, 0xFF	; 255
-  c0:	89 e6       	ldi	r24, 0x69	; 105
-  c2:	98 e1       	ldi	r25, 0x18	; 24
-  c4:	21 50       	subi	r18, 0x01	; 1
-  c6:	80 40       	sbci	r24, 0x00	; 0
-  c8:	90 40       	sbci	r25, 0x00	; 0
-  ca:	e1 f7       	brne	.-8      	; 0xc4 <main+0x1e>
-  cc:	00 c0       	rjmp	.+0      	; 0xce <main+0x28>
-  ce:	00 00       	nop
-	 while(1)
-    {
-		if(i < 10)
-		{
-			_delay_ms(500);
-			display(i);
-  d0:	8c 2f       	mov	r24, r28
-  d2:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <display>
-			i++;
-  d6:	cf 5f       	subi	r28, 0xFF	; 255
-	
-	uint8_t i = 0;
-	
-	 while(1)
-    {
-		if(i < 10)
-  d8:	ca 30       	cpi	r28, 0x0A	; 10
-  da:	80 f7       	brcc	.-32     	; 0xbc <main+0x16>
-  dc:	f0 cf       	rjmp	.-32     	; 0xbe <main+0x18>
-
-000000de <__vector_11>:
-		}
-		
+000000c2 <__vector_11>:
+    {	
     }
 }
+
 ISR (TIMER1_COMPA_vect)
 {
-  de:	1f 92       	push	r1
-  e0:	0f 92       	push	r0
-  e2:	0f b6       	in	r0, 0x3f	; 63
-  e4:	0f 92       	push	r0
-  e6:	11 24       	eor	r1, r1
-  e8:	8f 93       	push	r24
-  ea:	9f 93       	push	r25
-		PORTD ^= (1 << PORTD5);
-  ec:	9b b1       	in	r25, 0x0b	; 11
-  ee:	80 e2       	ldi	r24, 0x20	; 32
-  f0:	89 27       	eor	r24, r25
-  f2:	8b b9       	out	0x0b, r24	; 11
+  c2:	1f 92       	push	r1
+  c4:	0f 92       	push	r0
+  c6:	0f b6       	in	r0, 0x3f	; 63
+  c8:	0f 92       	push	r0
+  ca:	11 24       	eor	r1, r1
+  cc:	8f 93       	push	r24
+		PORTD ^= (1 << PORTD7);
+  ce:	8b b1       	in	r24, 0x0b	; 11
+  d0:	80 58       	subi	r24, 0x80	; 128
+  d2:	8b b9       	out	0x0b, r24	; 11
 }
-  f4:	9f 91       	pop	r25
-  f6:	8f 91       	pop	r24
-  f8:	0f 90       	pop	r0
-  fa:	0f be       	out	0x3f, r0	; 63
-  fc:	0f 90       	pop	r0
-  fe:	1f 90       	pop	r1
- 100:	18 95       	reti
+  d4:	8f 91       	pop	r24
+  d6:	0f 90       	pop	r0
+  d8:	0f be       	out	0x3f, r0	; 63
+  da:	0f 90       	pop	r0
+  dc:	1f 90       	pop	r1
+  de:	18 95       	reti
 
-00000102 <__vector_3>:
-ISR(PCINT0_vect) {
- 102:	1f 92       	push	r1
- 104:	0f 92       	push	r0
- 106:	0f b6       	in	r0, 0x3f	; 63
- 108:	0f 92       	push	r0
- 10a:	11 24       	eor	r1, r1
- 10c:	2f 93       	push	r18
- 10e:	8f 93       	push	r24
- 110:	9f 93       	push	r25
-	if (PINC & _BV(PC1)) 
- 112:	31 9b       	sbis	0x06, 1	; 6
- 114:	04 c0       	rjmp	.+8      	; 0x11e <__vector_3+0x1c>
+000000e0 <__vector_14>:
+
+ISR (TIMER0_COMPA_vect)  
+{
+  e0:	1f 92       	push	r1
+  e2:	0f 92       	push	r0
+  e4:	0f b6       	in	r0, 0x3f	; 63
+  e6:	0f 92       	push	r0
+  e8:	11 24       	eor	r1, r1
+  ea:	2f 93       	push	r18
+  ec:	3f 93       	push	r19
+  ee:	4f 93       	push	r20
+  f0:	5f 93       	push	r21
+  f2:	6f 93       	push	r22
+  f4:	7f 93       	push	r23
+  f6:	8f 93       	push	r24
+  f8:	9f 93       	push	r25
+  fa:	af 93       	push	r26
+  fc:	bf 93       	push	r27
+  fe:	ef 93       	push	r30
+ 100:	ff 93       	push	r31
+	count++;
+ 102:	80 91 0a 01 	lds	r24, 0x010A
+ 106:	8f 5f       	subi	r24, 0xFF	; 255
+ 108:	80 93 0a 01 	sts	0x010A, r24
+	if(count >= 100)
+ 10c:	80 91 0a 01 	lds	r24, 0x010A
+ 110:	84 36       	cpi	r24, 0x64	; 100
+ 112:	28 f0       	brcs	.+10     	; 0x11e <__vector_14+0x3e>
 	{
-		PORTD ^= (1 << 3);
- 116:	9b b1       	in	r25, 0x0b	; 11
- 118:	88 e0       	ldi	r24, 0x08	; 8
- 11a:	89 27       	eor	r24, r25
- 11c:	8b b9       	out	0x0b, r24	; 11
- 11e:	2f ef       	ldi	r18, 0xFF	; 255
- 120:	83 ef       	ldi	r24, 0xF3	; 243
- 122:	91 e0       	ldi	r25, 0x01	; 1
- 124:	21 50       	subi	r18, 0x01	; 1
- 126:	80 40       	sbci	r24, 0x00	; 0
- 128:	90 40       	sbci	r25, 0x00	; 0
- 12a:	e1 f7       	brne	.-8      	; 0x124 <__vector_3+0x22>
- 12c:	00 c0       	rjmp	.+0      	; 0x12e <__vector_3+0x2c>
- 12e:	00 00       	nop
+			togle_Led(LED_1);
+ 114:	85 e0       	ldi	r24, 0x05	; 5
+ 116:	0e 94 76 01 	call	0x2ec	; 0x2ec <togle_Led>
+			count = 0;
+ 11a:	10 92 0a 01 	sts	0x010A, r1
 	}
-	_delay_ms(40); 
- 130:	9f 91       	pop	r25
- 132:	8f 91       	pop	r24
+
+}
+ 11e:	ff 91       	pop	r31
+ 120:	ef 91       	pop	r30
+ 122:	bf 91       	pop	r27
+ 124:	af 91       	pop	r26
+ 126:	9f 91       	pop	r25
+ 128:	8f 91       	pop	r24
+ 12a:	7f 91       	pop	r23
+ 12c:	6f 91       	pop	r22
+ 12e:	5f 91       	pop	r21
+ 130:	4f 91       	pop	r20
+ 132:	3f 91       	pop	r19
  134:	2f 91       	pop	r18
  136:	0f 90       	pop	r0
  138:	0f be       	out	0x3f, r0	; 63
@@ -224,150 +200,369 @@ ISR(PCINT0_vect) {
  13c:	1f 90       	pop	r1
  13e:	18 95       	reti
 
-00000140 <initDisplay>:
-#include "D:\AtmelRepos\PS1\PS1\Header\init.h"
+00000140 <__vector_4>:
+
+ISR(PCINT1_vect) {
+ 140:	1f 92       	push	r1
+ 142:	0f 92       	push	r0
+ 144:	0f b6       	in	r0, 0x3f	; 63
+ 146:	0f 92       	push	r0
+ 148:	11 24       	eor	r1, r1
+ 14a:	2f 93       	push	r18
+ 14c:	3f 93       	push	r19
+ 14e:	4f 93       	push	r20
+ 150:	5f 93       	push	r21
+ 152:	6f 93       	push	r22
+ 154:	7f 93       	push	r23
+ 156:	8f 93       	push	r24
+ 158:	9f 93       	push	r25
+ 15a:	af 93       	push	r26
+ 15c:	bf 93       	push	r27
+ 15e:	ef 93       	push	r30
+ 160:	ff 93       	push	r31
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 162:	2f ef       	ldi	r18, 0xFF	; 255
+ 164:	87 ee       	ldi	r24, 0xE7	; 231
+ 166:	93 e0       	ldi	r25, 0x03	; 3
+ 168:	21 50       	subi	r18, 0x01	; 1
+ 16a:	80 40       	sbci	r24, 0x00	; 0
+ 16c:	90 40       	sbci	r25, 0x00	; 0
+ 16e:	e1 f7       	brne	.-8      	; 0x168 <__vector_4+0x28>
+ 170:	00 c0       	rjmp	.+0      	; 0x172 <__vector_4+0x32>
+ 172:	00 00       	nop
+	_delay_ms(80); //debounce
+	if (PINC & (0x01u)) 
+ 174:	30 9b       	sbis	0x06, 0	; 6
+ 176:	26 c0       	rjmp	.+76     	; 0x1c4 <__vector_4+0x84>
+	{
+		//Button was pressed!
+		buttonCount = eeprom_read(0x00u);
+ 178:	80 e0       	ldi	r24, 0x00	; 0
+ 17a:	90 e0       	ldi	r25, 0x00	; 0
+ 17c:	0e 94 fb 00 	call	0x1f6	; 0x1f6 <eeprom_read>
+ 180:	80 93 0b 01 	sts	0x010B, r24
+		if(buttonCount < 10)
+ 184:	80 91 0b 01 	lds	r24, 0x010B
+ 188:	8a 30       	cpi	r24, 0x0A	; 10
+ 18a:	80 f4       	brcc	.+32     	; 0x1ac <__vector_4+0x6c>
+		{	
+			buttonCount++;
+ 18c:	80 91 0b 01 	lds	r24, 0x010B
+ 190:	8f 5f       	subi	r24, 0xFF	; 255
+ 192:	80 93 0b 01 	sts	0x010B, r24
+			eeprom_write(0x00u,buttonCount);
+ 196:	60 91 0b 01 	lds	r22, 0x010B
+ 19a:	80 e0       	ldi	r24, 0x00	; 0
+ 19c:	90 e0       	ldi	r25, 0x00	; 0
+ 19e:	0e 94 f3 00 	call	0x1e6	; 0x1e6 <eeprom_write>
+			display(buttonCount);
+ 1a2:	80 91 0b 01 	lds	r24, 0x010B
+ 1a6:	0e 94 4f 01 	call	0x29e	; 0x29e <display>
+ 1aa:	0c c0       	rjmp	.+24     	; 0x1c4 <__vector_4+0x84>
+		}
+		else
+		{
+			buttonCount = 0x00;
+ 1ac:	10 92 0b 01 	sts	0x010B, r1
+			eeprom_write(0x00u,buttonCount);
+ 1b0:	60 91 0b 01 	lds	r22, 0x010B
+ 1b4:	80 e0       	ldi	r24, 0x00	; 0
+ 1b6:	90 e0       	ldi	r25, 0x00	; 0
+ 1b8:	0e 94 f3 00 	call	0x1e6	; 0x1e6 <eeprom_write>
+			display(buttonCount);
+ 1bc:	80 91 0b 01 	lds	r24, 0x010B
+ 1c0:	0e 94 4f 01 	call	0x29e	; 0x29e <display>
+		}
+	} 
+ 1c4:	ff 91       	pop	r31
+ 1c6:	ef 91       	pop	r30
+ 1c8:	bf 91       	pop	r27
+ 1ca:	af 91       	pop	r26
+ 1cc:	9f 91       	pop	r25
+ 1ce:	8f 91       	pop	r24
+ 1d0:	7f 91       	pop	r23
+ 1d2:	6f 91       	pop	r22
+ 1d4:	5f 91       	pop	r21
+ 1d6:	4f 91       	pop	r20
+ 1d8:	3f 91       	pop	r19
+ 1da:	2f 91       	pop	r18
+ 1dc:	0f 90       	pop	r0
+ 1de:	0f be       	out	0x3f, r0	; 63
+ 1e0:	0f 90       	pop	r0
+ 1e2:	1f 90       	pop	r1
+ 1e4:	18 95       	reti
+
+000001e6 <eeprom_write>:
+#include "D:/AtmelRepos/PS1/PS1/Header/eeprom.h"
+
+void eeprom_write(unsigned int address, unsigned char data)
+{
+	/* Wait for completion of previous write */
+	while(EECR & (1<<EEPE))
+ 1e6:	f9 99       	sbic	0x1f, 1	; 31
+ 1e8:	fe cf       	rjmp	.-4      	; 0x1e6 <eeprom_write>
+	;
+	/* Set up address and Data Registers */
+	EEAR = address;
+ 1ea:	92 bd       	out	0x22, r25	; 34
+ 1ec:	81 bd       	out	0x21, r24	; 33
+	EEDR = data;
+ 1ee:	60 bd       	out	0x20, r22	; 32
+	/* Write logical one to EEMPE */
+	EECR |= (1<<EEMPE);
+ 1f0:	fa 9a       	sbi	0x1f, 2	; 31
+	/* Start eeprom write by setting EEPE */
+	EECR |= (1<<EEPE);
+ 1f2:	f9 9a       	sbi	0x1f, 1	; 31
+ 1f4:	08 95       	ret
+
+000001f6 <eeprom_read>:
+}
+
+uint8_t eeprom_read(unsigned int address)
+{
+	/* Wait for completion of previous write */
+	while(EECR & (1<<EEPE))
+ 1f6:	f9 99       	sbic	0x1f, 1	; 31
+ 1f8:	fe cf       	rjmp	.-4      	; 0x1f6 <eeprom_read>
+	;
+	/* Set up address register */
+	EEAR = address;
+ 1fa:	92 bd       	out	0x22, r25	; 34
+ 1fc:	81 bd       	out	0x21, r24	; 33
+	/* Start eeprom read by writing EERE */
+	EECR |= (1<<EERE);
+ 1fe:	f8 9a       	sbi	0x1f, 0	; 31
+	/* Return data from Data Register */
+	return EEDR;
+ 200:	80 b5       	in	r24, 0x20	; 32
+ 202:	08 95       	ret
+
+00000204 <initDisplay>:
+#include "D:/AtmelRepos/PS1/PS1/Header/eeprom.h"
 
 void initDisplay()
 {
 	/* Initialize the Data Direction Registers as outputs for the 7 segments display*/
 	DDRB |= (1 << DDB0) | (1 << DDB1) | (1 << DDB2) | (1 << DDB3) | (1 << DDB4) | (1 << DDB5);
- 140:	84 b1       	in	r24, 0x04	; 4
- 142:	8f 63       	ori	r24, 0x3F	; 63
- 144:	84 b9       	out	0x04, r24	; 4
+ 204:	84 b1       	in	r24, 0x04	; 4
+ 206:	8f 63       	ori	r24, 0x3F	; 63
+ 208:	84 b9       	out	0x04, r24	; 4
 	DDRD |= (1 << DDD6) | (1 << DDD7);
- 146:	8a b1       	in	r24, 0x0a	; 10
- 148:	80 6c       	ori	r24, 0xC0	; 192
- 14a:	8a b9       	out	0x0a, r24	; 10
- 14c:	08 95       	ret
+ 20a:	8a b1       	in	r24, 0x0a	; 10
+ 20c:	80 6c       	ori	r24, 0xC0	; 192
+ 20e:	8a b9       	out	0x0a, r24	; 10
+	display(eeprom_read(0x00u));
+ 210:	80 e0       	ldi	r24, 0x00	; 0
+ 212:	90 e0       	ldi	r25, 0x00	; 0
+ 214:	0e 94 fb 00 	call	0x1f6	; 0x1f6 <eeprom_read>
+ 218:	0e 94 4f 01 	call	0x29e	; 0x29e <display>
+ 21c:	08 95       	ret
 
-0000014e <initLeds>:
+0000021e <initLeds>:
 	
 }
 void initLeds()
 {
 	  DDRD |= (1 << DDD5) | (1 << DDD3) | (1 << DDD2);
- 14e:	8a b1       	in	r24, 0x0a	; 10
- 150:	8c 62       	ori	r24, 0x2C	; 44
- 152:	8a b9       	out	0x0a, r24	; 10
+ 21e:	8a b1       	in	r24, 0x0a	; 10
+ 220:	8c 62       	ori	r24, 0x2C	; 44
+ 222:	8a b9       	out	0x0a, r24	; 10
 	  PORTD |= (1 << 2) | (1 << 3) | (1 << 5);
- 154:	8b b1       	in	r24, 0x0b	; 11
- 156:	8c 62       	ori	r24, 0x2C	; 44
- 158:	8b b9       	out	0x0b, r24	; 11
- 15a:	08 95       	ret
+ 224:	8b b1       	in	r24, 0x0b	; 11
+ 226:	8c 62       	ori	r24, 0x2C	; 44
+ 228:	8b b9       	out	0x0b, r24	; 11
+ 22a:	08 95       	ret
 
-0000015c <initTimer>:
+0000022c <initTimerB>:
 	DDRC &= ~(1 << DDC1);
 	PORTC &= ~(1 << PORTC1);
 }
-void initTimer()
+void initTimerB(uint16_t countValue)
 {
 	cli();
- 15c:	f8 94       	cli
+ 22c:	f8 94       	cli
 	TCCR1B |= (1 << WGM12);
- 15e:	e1 e8       	ldi	r30, 0x81	; 129
- 160:	f0 e0       	ldi	r31, 0x00	; 0
- 162:	80 81       	ld	r24, Z
- 164:	88 60       	ori	r24, 0x08	; 8
- 166:	80 83       	st	Z, r24
+ 22e:	e1 e8       	ldi	r30, 0x81	; 129
+ 230:	f0 e0       	ldi	r31, 0x00	; 0
+ 232:	20 81       	ld	r18, Z
+ 234:	28 60       	ori	r18, 0x08	; 8
+ 236:	20 83       	st	Z, r18
 	TCCR1B |= (1 << CS12);
- 168:	80 81       	ld	r24, Z
- 16a:	84 60       	ori	r24, 0x04	; 4
- 16c:	80 83       	st	Z, r24
-	OCR1A   = 0xF424u;
- 16e:	84 e2       	ldi	r24, 0x24	; 36
- 170:	94 ef       	ldi	r25, 0xF4	; 244
- 172:	90 93 89 00 	sts	0x0089, r25
- 176:	80 93 88 00 	sts	0x0088, r24
+ 238:	20 81       	ld	r18, Z
+ 23a:	24 60       	ori	r18, 0x04	; 4
+ 23c:	20 83       	st	Z, r18
+	OCR1A   = countValue;
+ 23e:	90 93 89 00 	sts	0x0089, r25
+ 242:	80 93 88 00 	sts	0x0088, r24
 	TIMSK1 |= (1 << OCIE1A);
- 17a:	ef e6       	ldi	r30, 0x6F	; 111
- 17c:	f0 e0       	ldi	r31, 0x00	; 0
- 17e:	80 81       	ld	r24, Z
- 180:	82 60       	ori	r24, 0x02	; 2
- 182:	80 83       	st	Z, r24
+ 246:	ef e6       	ldi	r30, 0x6F	; 111
+ 248:	f0 e0       	ldi	r31, 0x00	; 0
+ 24a:	80 81       	ld	r24, Z
+ 24c:	82 60       	ori	r24, 0x02	; 2
+ 24e:	80 83       	st	Z, r24
 	sei(); 
- 184:	78 94       	sei
- 186:	08 95       	ret
+ 250:	78 94       	sei
+ 252:	08 95       	ret
 
-00000188 <initButtonISR>:
+00000254 <initTimerA>:
+}
+void initTimerA(uint8_t countValue)
+{
+	cli();
+ 254:	f8 94       	cli
+	TCCR0A |= (1 << WGM01);		// Set the Timer Mode to CTC
+ 256:	94 b5       	in	r25, 0x24	; 36
+ 258:	92 60       	ori	r25, 0x02	; 2
+ 25a:	94 bd       	out	0x24, r25	; 36
+	TCCR0B |= (1 << CS02) | (1 << CS00); 		// set prescaler to 1024 and start the timer
+ 25c:	95 b5       	in	r25, 0x25	; 37
+ 25e:	95 60       	ori	r25, 0x05	; 5
+ 260:	95 bd       	out	0x25, r25	; 37
+	OCR0A = countValue;			// Set the value that you want to count to
+ 262:	87 bd       	out	0x27, r24	; 39
+	TIMSK0 |= (1 << OCIE0A);    //Set the ISR COMPA vect
+ 264:	ee e6       	ldi	r30, 0x6E	; 110
+ 266:	f0 e0       	ldi	r31, 0x00	; 0
+ 268:	80 81       	ld	r24, Z
+ 26a:	82 60       	ori	r24, 0x02	; 2
+ 26c:	80 83       	st	Z, r24
+	sei();
+ 26e:	78 94       	sei
+ 270:	08 95       	ret
+
+00000272 <initButtonISR>:
 }
 void initButtonISR()
 {
 	cli();
- 188:	f8 94       	cli
-	PCICR |= (1 << PCIE1);
- 18a:	e8 e6       	ldi	r30, 0x68	; 104
- 18c:	f0 e0       	ldi	r31, 0x00	; 0
- 18e:	80 81       	ld	r24, Z
- 190:	82 60       	ori	r24, 0x02	; 2
- 192:	80 83       	st	Z, r24
-	PCMSK1 |= (1 << PCINT9);
- 194:	ec e6       	ldi	r30, 0x6C	; 108
- 196:	f0 e0       	ldi	r31, 0x00	; 0
- 198:	80 81       	ld	r24, Z
- 19a:	82 60       	ori	r24, 0x02	; 2
- 19c:	80 83       	st	Z, r24
+ 272:	f8 94       	cli
+	/*Initializing PC1 as input for the SW button with pull down resistor.*/
+	DDRC |= (1 << DDC0);
+ 274:	38 9a       	sbi	0x07, 0	; 7
+	PORTC &= ~(1 << PORTC0);
+ 276:	40 98       	cbi	0x08, 0	; 8
+	
+	PCICR  |= (1 << PCIE1);
+ 278:	e8 e6       	ldi	r30, 0x68	; 104
+ 27a:	f0 e0       	ldi	r31, 0x00	; 0
+ 27c:	80 81       	ld	r24, Z
+ 27e:	82 60       	ori	r24, 0x02	; 2
+ 280:	80 83       	st	Z, r24
+	PCMSK1 |= (1 << PCINT8);
+ 282:	ec e6       	ldi	r30, 0x6C	; 108
+ 284:	f0 e0       	ldi	r31, 0x00	; 0
+ 286:	80 81       	ld	r24, Z
+ 288:	81 60       	ori	r24, 0x01	; 1
+ 28a:	80 83       	st	Z, r24
 	sei();
- 19e:	78 94       	sei
- 1a0:	08 95       	ret
+ 28c:	78 94       	sei
+ 28e:	08 95       	ret
 
-000001a2 <clear>:
+00000290 <clear>:
+		eeprom_write(0x00u,0x00u);
 	}
-	PORTB |= segDisplay[value];
 }
 void clear()
 {
 	PORTB &= ~(1 << PORTB0) & ~(1 << PORTB1) & ~(1 << PORTB2) & ~(1 << PORTB3) & ~(1 << PORTB4) & ~(1 << PORTB5);
- 1a2:	85 b1       	in	r24, 0x05	; 5
- 1a4:	80 7c       	andi	r24, 0xC0	; 192
- 1a6:	85 b9       	out	0x05, r24	; 5
+ 290:	85 b1       	in	r24, 0x05	; 5
+ 292:	80 7c       	andi	r24, 0xC0	; 192
+ 294:	85 b9       	out	0x05, r24	; 5
 	PORTD &= ~(1 << PORTD6) & ~(1 << PORTD7);
- 1a8:	8b b1       	in	r24, 0x0b	; 11
- 1aa:	8f 73       	andi	r24, 0x3F	; 63
- 1ac:	8b b9       	out	0x0b, r24	; 11
- 1ae:	08 95       	ret
+ 296:	8b b1       	in	r24, 0x0b	; 11
+ 298:	8f 73       	andi	r24, 0x3F	; 63
+ 29a:	8b b9       	out	0x0b, r24	; 11
+ 29c:	08 95       	ret
 
-000001b0 <display>:
-#include "D:\AtmelRepos\PS1\PS1\Header\segDisplay.h"
+0000029e <display>:
+#include "D:\AtmelRepos\PS1\PS1\Header\eeprom.h"
 
 const uint8_t segDisplay[10] = {0x3Fu, 0x06u, 0x1Bu, 0x0Fu, 0x26u, 0x2Du, 0x3D, 0x07u, 0x3F, 0x2F};
-
+volatile uint8_t buttonCount = 0x00u;
 void display(uint8_t value)
 {
- 1b0:	cf 93       	push	r28
- 1b2:	c8 2f       	mov	r28, r24
+ 29e:	cf 93       	push	r28
+ 2a0:	c8 2f       	mov	r28, r24
 	clear();
- 1b4:	0e 94 d1 00 	call	0x1a2	; 0x1a2 <clear>
-	if((value != 0x00) & (value != 0x01) & (value != 0x07))
- 1b8:	81 e0       	ldi	r24, 0x01	; 1
- 1ba:	c7 30       	cpi	r28, 0x07	; 7
- 1bc:	09 f4       	brne	.+2      	; 0x1c0 <display+0x10>
- 1be:	80 e0       	ldi	r24, 0x00	; 0
- 1c0:	88 23       	and	r24, r24
- 1c2:	31 f0       	breq	.+12     	; 0x1d0 <display+0x20>
- 1c4:	81 e0       	ldi	r24, 0x01	; 1
- 1c6:	c2 30       	cpi	r28, 0x02	; 2
- 1c8:	08 f4       	brcc	.+2      	; 0x1cc <display+0x1c>
- 1ca:	80 e0       	ldi	r24, 0x00	; 0
- 1cc:	81 11       	cpse	r24, r1
+ 2a2:	0e 94 48 01 	call	0x290	; 0x290 <clear>
+	if(value < 10)
+ 2a6:	ca 30       	cpi	r28, 0x0A	; 10
+ 2a8:	a8 f4       	brcc	.+42     	; 0x2d4 <display+0x36>
 	{
-		PORTD |= (1 << PORTD6);
- 1ce:	5e 9a       	sbi	0x0b, 6	; 11
+		if((value != 0x00) & (value != 0x01) & (value != 0x07))
+ 2aa:	81 e0       	ldi	r24, 0x01	; 1
+ 2ac:	c7 30       	cpi	r28, 0x07	; 7
+ 2ae:	09 f4       	brne	.+2      	; 0x2b2 <display+0x14>
+ 2b0:	80 e0       	ldi	r24, 0x00	; 0
+ 2b2:	88 23       	and	r24, r24
+ 2b4:	31 f0       	breq	.+12     	; 0x2c2 <display+0x24>
+ 2b6:	81 e0       	ldi	r24, 0x01	; 1
+ 2b8:	c2 30       	cpi	r28, 0x02	; 2
+ 2ba:	08 f4       	brcc	.+2      	; 0x2be <display+0x20>
+ 2bc:	80 e0       	ldi	r24, 0x00	; 0
+ 2be:	81 11       	cpse	r24, r1
+		{
+			PORTD |= (1 << PORTD6);
+ 2c0:	5e 9a       	sbi	0x0b, 6	; 11
+		}
+		PORTB |= segDisplay[value];
+ 2c2:	95 b1       	in	r25, 0x05	; 5
+ 2c4:	ec 2f       	mov	r30, r28
+ 2c6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2c8:	e0 50       	subi	r30, 0x00	; 0
+ 2ca:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2cc:	80 81       	ld	r24, Z
+ 2ce:	89 2b       	or	r24, r25
+ 2d0:	85 b9       	out	0x05, r24	; 5
+ 2d2:	0a c0       	rjmp	.+20     	; 0x2e8 <display+0x4a>
 	}
-	PORTB |= segDisplay[value];
- 1d0:	95 b1       	in	r25, 0x05	; 5
- 1d2:	ec 2f       	mov	r30, r28
- 1d4:	f0 e0       	ldi	r31, 0x00	; 0
- 1d6:	e0 50       	subi	r30, 0x00	; 0
- 1d8:	ff 4f       	sbci	r31, 0xFF	; 255
- 1da:	80 81       	ld	r24, Z
- 1dc:	89 2b       	or	r24, r25
- 1de:	85 b9       	out	0x05, r24	; 5
+	else
+	{
+		PORTB |= segDisplay[0x00u];
+ 2d4:	85 b1       	in	r24, 0x05	; 5
+ 2d6:	8f 63       	ori	r24, 0x3F	; 63
+ 2d8:	85 b9       	out	0x05, r24	; 5
+		buttonCount = 0x00;
+ 2da:	10 92 0b 01 	sts	0x010B, r1
+		eeprom_write(0x00u,0x00u);
+ 2de:	60 e0       	ldi	r22, 0x00	; 0
+ 2e0:	80 e0       	ldi	r24, 0x00	; 0
+ 2e2:	90 e0       	ldi	r25, 0x00	; 0
+ 2e4:	0e 94 f3 00 	call	0x1e6	; 0x1e6 <eeprom_write>
+	}
 }
- 1e0:	cf 91       	pop	r28
- 1e2:	08 95       	ret
+ 2e8:	cf 91       	pop	r28
+ 2ea:	08 95       	ret
 
-000001e4 <_exit>:
- 1e4:	f8 94       	cli
+000002ec <togle_Led>:
+	PORTD |= (1 << led);
+}
 
-000001e6 <__stop_program>:
- 1e6:	ff cf       	rjmp	.-2      	; 0x1e6 <__stop_program>
+void togle_Led(uint8_t led)
+{
+	PORTD ^= (1 << led);
+ 2ec:	4b b1       	in	r20, 0x0b	; 11
+ 2ee:	21 e0       	ldi	r18, 0x01	; 1
+ 2f0:	30 e0       	ldi	r19, 0x00	; 0
+ 2f2:	b9 01       	movw	r22, r18
+ 2f4:	02 c0       	rjmp	.+4      	; 0x2fa <togle_Led+0xe>
+ 2f6:	66 0f       	add	r22, r22
+ 2f8:	77 1f       	adc	r23, r23
+ 2fa:	8a 95       	dec	r24
+ 2fc:	e2 f7       	brpl	.-8      	; 0x2f6 <togle_Led+0xa>
+ 2fe:	cb 01       	movw	r24, r22
+ 300:	84 27       	eor	r24, r20
+ 302:	8b b9       	out	0x0b, r24	; 11
+ 304:	08 95       	ret
+
+00000306 <_exit>:
+ 306:	f8 94       	cli
+
+00000308 <__stop_program>:
+ 308:	ff cf       	rjmp	.-2      	; 0x308 <__stop_program>

@@ -14,7 +14,9 @@ Discarded input sections
  .text          0x00000000        0x0 PS1.o
  .data          0x00000000        0x0 PS1.o
  .bss           0x00000000        0x0 PS1.o
- .bss.blink     0x00000000        0x1 PS1.o
+ .text          0x00000000        0x0 Source/eeprom.o
+ .data          0x00000000        0x0 Source/eeprom.o
+ .bss           0x00000000        0x0 Source/eeprom.o
  .text          0x00000000        0x0 Source/init.o
  .data          0x00000000        0x0 Source/init.o
  .bss           0x00000000        0x0 Source/init.o
@@ -23,6 +25,11 @@ Discarded input sections
  .text          0x00000000        0x0 Source/segDisplay.o
  .data          0x00000000        0x0 Source/segDisplay.o
  .bss           0x00000000        0x0 Source/segDisplay.o
+ .text          0x00000000        0x0 Source/util.o
+ .data          0x00000000        0x0 Source/util.o
+ .bss           0x00000000        0x0 Source/util.o
+ .text.led_ON   0x00000000       0x18 Source/util.o
+ .text.led_OFF  0x00000000       0x1a Source/util.o
  .text          0x00000000        0x0 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  .data          0x00000000        0x0 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
@@ -89,8 +96,10 @@ Linker script and memory map
 Address of section .data set to 0x800100
 LOAD d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
 LOAD PS1.o
+LOAD Source/eeprom.o
 LOAD Source/init.o
 LOAD Source/segDisplay.o
+LOAD Source/util.o
 START GROUP
 LOAD d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5\libm.a
 END GROUP
@@ -190,7 +199,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1e8
+.text           0x00000000      0x30a
  *(.vectors)
  .vectors       0x00000000       0x68 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vector_default
@@ -253,6 +262,7 @@ END GROUP
                 0x000000a2                __vector_12
                 0x000000a2                __bad_interrupt
                 0x000000a2                __vector_6
+                0x000000a2                __vector_3
                 0x000000a2                __vector_23
                 0x000000a2                __vector_25
                 0x000000a2                __vector_13
@@ -260,48 +270,61 @@ END GROUP
                 0x000000a2                __vector_19
                 0x000000a2                __vector_7
                 0x000000a2                __vector_5
-                0x000000a2                __vector_4
                 0x000000a2                __vector_9
                 0x000000a2                __vector_2
                 0x000000a2                __vector_21
                 0x000000a2                __vector_15
                 0x000000a2                __vector_8
-                0x000000a2                __vector_14
                 0x000000a2                __vector_10
                 0x000000a2                __vector_16
                 0x000000a2                __vector_18
                 0x000000a2                __vector_20
                 0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x000000a6       0x38 PS1.o
+ .text.main     0x000000a6       0x1c PS1.o
                 0x000000a6                main
  .text.__vector_11
-                0x000000de       0x24 PS1.o
-                0x000000de                __vector_11
- .text.__vector_3
-                0x00000102       0x3e PS1.o
-                0x00000102                __vector_3
+                0x000000c2       0x1e PS1.o
+                0x000000c2                __vector_11
+ .text.__vector_14
+                0x000000e0       0x60 PS1.o
+                0x000000e0                __vector_14
+ .text.__vector_4
+                0x00000140       0xa6 PS1.o
+                0x00000140                __vector_4
+ .text.eeprom_write
+                0x000001e6       0x10 Source/eeprom.o
+                0x000001e6                eeprom_write
+ .text.eeprom_read
+                0x000001f6        0xe Source/eeprom.o
+                0x000001f6                eeprom_read
  .text.initDisplay
-                0x00000140        0xe Source/init.o
-                0x00000140                initDisplay
+                0x00000204       0x1a Source/init.o
+                0x00000204                initDisplay
  .text.initLeds
-                0x0000014e        0xe Source/init.o
-                0x0000014e                initLeds
- .text.initTimer
-                0x0000015c       0x2c Source/init.o
-                0x0000015c                initTimer
+                0x0000021e        0xe Source/init.o
+                0x0000021e                initLeds
+ .text.initTimerB
+                0x0000022c       0x28 Source/init.o
+                0x0000022c                initTimerB
+ .text.initTimerA
+                0x00000254       0x1e Source/init.o
+                0x00000254                initTimerA
  .text.initButtonISR
-                0x00000188       0x1a Source/init.o
-                0x00000188                initButtonISR
- .text.clear    0x000001a2        0xe Source/segDisplay.o
-                0x000001a2                clear
- .text.display  0x000001b0       0x34 Source/segDisplay.o
-                0x000001b0                display
-                0x000001e4                . = ALIGN (0x2)
+                0x00000272       0x1e Source/init.o
+                0x00000272                initButtonISR
+ .text.clear    0x00000290        0xe Source/segDisplay.o
+                0x00000290                clear
+ .text.display  0x0000029e       0x4e Source/segDisplay.o
+                0x0000029e                display
+ .text.togle_Led
+                0x000002ec       0x1a Source/util.o
+                0x000002ec                togle_Led
+                0x00000306                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001e4        0x0 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
-                0x000001e4                _exit
-                0x000001e4                exit
+ .fini9         0x00000306        0x0 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+                0x00000306                _exit
+                0x00000306                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -320,11 +343,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001e4        0x4 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000306        0x4 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000001e8                _etext = .
+                0x0000030a                _etext = .
 
-.data           0x00800100        0xa load address 0x000001e8
+.data           0x00800100        0xa load address 0x0000030a
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -338,21 +361,26 @@ END GROUP
                 0x0080010a                _edata = .
                 0x0080010a                PROVIDE (__data_end, .)
 
-.bss            0x0080010a        0x0
+.bss            0x0080010a        0x2
                 0x0080010a                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.count     0x0080010a        0x1 PS1.o
+                0x0080010a                count
+ .bss.buttonCount
+                0x0080010b        0x1 Source/segDisplay.o
+                0x0080010b                buttonCount
  *(COMMON)
-                0x0080010a                PROVIDE (__bss_end, .)
-                0x000001e8                __data_load_start = LOADADDR (.data)
-                0x000001f2                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0080010c                PROVIDE (__bss_end, .)
+                0x0000030a                __data_load_start = LOADADDR (.data)
+                0x00000314                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080010a        0x0
-                0x0080010a                PROVIDE (__noinit_start, .)
+.noinit         0x0080010c        0x0
+                0x0080010c                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0080010a                PROVIDE (__noinit_end, .)
-                0x0080010a                _end = .
-                0x0080010a                PROVIDE (__heap_start, .)
+                0x0080010c                PROVIDE (__noinit_end, .)
+                0x0080010c                _end = .
+                0x0080010c                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -395,8 +423,10 @@ END GROUP
  *(.comment)
  .comment       0x00000000       0x30 PS1.o
                                  0x31 (size before relaxing)
+ .comment       0x00000000       0x31 Source/eeprom.o
  .comment       0x00000000       0x31 Source/init.o
  .comment       0x00000000       0x31 Source/segDisplay.o
+ .comment       0x00000000       0x31 Source/util.o
 
 .note.gnu.build-id
  *(.note.gnu.build-id)
@@ -413,55 +443,74 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x98
+.debug_aranges  0x00000000      0x100
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x30 PS1.o
+                0x00000000       0x38 PS1.o
  .debug_aranges
-                0x00000030       0x40 Source/init.o
+                0x00000038       0x28 Source/eeprom.o
  .debug_aranges
-                0x00000070       0x28 Source/segDisplay.o
+                0x00000060       0x48 Source/init.o
+ .debug_aranges
+                0x000000a8       0x28 Source/segDisplay.o
+ .debug_aranges
+                0x000000d0       0x30 Source/util.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x3e2
+.debug_info     0x00000000      0x73c
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x21e PS1.o
- .debug_info    0x0000021e       0xe1 Source/init.o
- .debug_info    0x000002ff       0xe3 Source/segDisplay.o
+ .debug_info    0x00000000      0x2e5 PS1.o
+ .debug_info    0x000002e5       0xdc Source/eeprom.o
+ .debug_info    0x000003c1      0x16e Source/init.o
+ .debug_info    0x0000052f      0x128 Source/segDisplay.o
+ .debug_info    0x00000657       0xe5 Source/util.o
 
-.debug_abbrev   0x00000000      0x27a
+.debug_abbrev   0x00000000      0x47e
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x17e PS1.o
- .debug_abbrev  0x0000017e       0x4f Source/init.o
- .debug_abbrev  0x000001cd       0xad Source/segDisplay.o
+ .debug_abbrev  0x00000000      0x1a6 PS1.o
+ .debug_abbrev  0x000001a6       0x8b Source/eeprom.o
+ .debug_abbrev  0x00000231       0xe1 Source/init.o
+ .debug_abbrev  0x00000312       0xe3 Source/segDisplay.o
+ .debug_abbrev  0x000003f5       0x89 Source/util.o
 
-.debug_line     0x00000000      0x2e3
+.debug_line     0x00000000      0x508
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x153 PS1.o
- .debug_line    0x00000153       0xe0 Source/init.o
- .debug_line    0x00000233       0xb0 Source/segDisplay.o
+ .debug_line    0x00000000      0x18e PS1.o
+ .debug_line    0x0000018e       0xb7 Source/eeprom.o
+ .debug_line    0x00000245      0x131 Source/init.o
+ .debug_line    0x00000376       0xdd Source/segDisplay.o
+ .debug_line    0x00000453       0xb5 Source/util.o
 
-.debug_frame    0x00000000      0x114
+.debug_frame    0x00000000      0x21c
  *(.debug_frame)
- .debug_frame   0x00000000       0x74 PS1.o
- .debug_frame   0x00000074       0x64 Source/init.o
- .debug_frame   0x000000d8       0x3c Source/segDisplay.o
+ .debug_frame   0x00000000       0xf4 PS1.o
+ .debug_frame   0x000000f4       0x34 Source/eeprom.o
+ .debug_frame   0x00000128       0x74 Source/init.o
+ .debug_frame   0x0000019c       0x3c Source/segDisplay.o
+ .debug_frame   0x000001d8       0x44 Source/util.o
 
-.debug_str      0x00000000      0x1f5
+.debug_str      0x00000000      0x287
  *(.debug_str)
- .debug_str     0x00000000      0x199 PS1.o
-                                0x1cd (size before relaxing)
- .debug_str     0x00000199       0x25 Source/init.o
-                                0x172 (size before relaxing)
- .debug_str     0x000001be       0x37 Source/segDisplay.o
-                                0x15f (size before relaxing)
+ .debug_str     0x00000000      0x1e9 PS1.o
+                                0x21d (size before relaxing)
+ .debug_str     0x000001e9       0x20 Source/eeprom.o
+                                0x162 (size before relaxing)
+ .debug_str     0x00000209       0x27 Source/init.o
+                                0x19d (size before relaxing)
+ .debug_str     0x00000230       0x37 Source/segDisplay.o
+                                0x178 (size before relaxing)
+ .debug_str     0x00000267       0x20 Source/util.o
+                                0x14a (size before relaxing)
 
-.debug_loc      0x00000000      0x117
+.debug_loc      0x00000000      0x2e5
  *(.debug_loc)
- .debug_loc     0x00000000       0xc9 PS1.o
- .debug_loc     0x000000c9       0x4e Source/segDisplay.o
+ .debug_loc     0x00000000      0x1d2 PS1.o
+ .debug_loc     0x000001d2       0x24 Source/eeprom.o
+ .debug_loc     0x000001f6       0x5f Source/init.o
+ .debug_loc     0x00000255       0x4e Source/segDisplay.o
+ .debug_loc     0x000002a3       0x42 Source/util.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -481,11 +530,13 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x68
+.debug_ranges   0x00000000       0xb0
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x20 PS1.o
- .debug_ranges  0x00000020       0x30 Source/init.o
- .debug_ranges  0x00000050       0x18 Source/segDisplay.o
+ .debug_ranges  0x00000000       0x28 PS1.o
+ .debug_ranges  0x00000028       0x18 Source/eeprom.o
+ .debug_ranges  0x00000040       0x38 Source/init.o
+ .debug_ranges  0x00000078       0x18 Source/segDisplay.o
+ .debug_ranges  0x00000090       0x20 Source/util.o
 
 .debug_macro
  *(.debug_macro)

@@ -11,9 +11,11 @@
 
 void initDisplay();
 void initButton();
-void initTimer();
+void initTimerA(uint8_t countValue);
+void initTimerB(uint16_t countValue);
 void initLeds();
 void initButtonISR();
+
 
 
 #endif /* INIT_H_ */

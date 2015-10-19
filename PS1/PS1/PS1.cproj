@@ -96,19 +96,31 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Header\eeprom.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\init.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Header\segDisplay.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\util.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="PS1.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\eeprom.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\init.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\segDisplay.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\util.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

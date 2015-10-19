@@ -40,8 +40,10 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../PS1.c \
+../Source/eeprom.c \
 ../Source/init.c \
-../Source/segDisplay.c
+../Source/segDisplay.c \
+../Source/util.c
 
 
 PREPROCESSING_SRCS += 
@@ -52,23 +54,31 @@ ASM_SRCS +=
 
 OBJS +=  \
 PS1.o \
+Source/eeprom.o \
 Source/init.o \
-Source/segDisplay.o
+Source/segDisplay.o \
+Source/util.o
 
 OBJS_AS_ARGS +=  \
 PS1.o \
+Source/eeprom.o \
 Source/init.o \
-Source/segDisplay.o
+Source/segDisplay.o \
+Source/util.o
 
 C_DEPS +=  \
 PS1.d \
+Source/eeprom.d \
 Source/init.d \
-Source/segDisplay.d
+Source/segDisplay.d \
+Source/util.d
 
 C_DEPS_AS_ARGS +=  \
 PS1.d \
+Source/eeprom.d \
 Source/init.d \
-Source/segDisplay.d
+Source/segDisplay.d \
+Source/util.d
 
 OUTPUT_FILE_PATH +=PS1.elf
 
@@ -84,6 +94,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

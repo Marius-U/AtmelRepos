@@ -9,6 +9,8 @@
 #ifndef SEGDISPLAY_H_
 #define SEGDISPLAY_H_
 
+extern volatile uint8_t buttonCount;
+
 void display(uint8_t value);
 void clear();
 

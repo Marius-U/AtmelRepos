@@ -10,8 +10,10 @@ Source/init.d Source/init.o: ../Source/init.c \
  d:\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\version.h \
  d:\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  d:\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h \
- D:/Atmel\ Toolchain/AVR8\ GCC/Native/3.4.1061/avr8-gnu-toolchain/avr/include/avr/interrupt.h \
- D:\AtmelRepos\PS1\PS1\Header\init.h
+ d:\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
+ D:\AtmelRepos\PS1\PS1\Header\init.h \
+ D:\AtmelRepos\PS1\PS1\Header/segDisplay.h \
+ D:/AtmelRepos/PS1/PS1/Header/eeprom.h
 
 d:\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -35,6 +37,10 @@ d:\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr
 
 d:\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-D:/Atmel\ Toolchain/AVR8\ GCC/Native/3.4.1061/avr8-gnu-toolchain/avr/include/avr/interrupt.h:
+d:\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
 D:\AtmelRepos\PS1\PS1\Header\init.h:
+
+D:\AtmelRepos\PS1\PS1\Header/segDisplay.h:
+
+D:/AtmelRepos/PS1/PS1/Header/eeprom.h:

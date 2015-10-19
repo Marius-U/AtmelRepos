@@ -4,7 +4,11 @@
 
 PS1.c
 
+Source\eeprom.c
+
 Source\init.c
 
 Source\segDisplay.c
+
+Source\util.c
 
