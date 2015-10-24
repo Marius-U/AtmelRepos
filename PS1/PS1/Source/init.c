@@ -42,8 +42,8 @@ void initTimerA(uint8_t countValue)
 {
 	cli();
 	TCCR0A |= (1 << WGM01);		// Set the Timer Mode to CTC
-	TCCR0B |= (1 << CS02) | (1 << CS00); 		// set prescaler to 1024 and start the timer
-	OCR0A = countValue;			// Set the value that you want to count to
+	TCCR0B |= (1 << CS02) ;     //| (1 << CS00); 		// set prescaler to 1024 and start the timer
+	OCR0A   = countValue;		// Set the value that you want to count to
 	TIMSK0 |= (1 << OCIE0A);    //Set the ISR COMPA vect
 	sei();
 }
@@ -56,5 +56,22 @@ void initButtonISR()
 	
 	PCICR  |= (1 << PCIE1);
 	PCMSK1 |= (1 << PCINT8);
+	sei();
+}
+
+void uart_init(void)
+{
+	cli();
+	// set baud rate
+	unsigned int baud = 207u;//BAUD_PRESCALE;
+	
+	UBRR0H = (unsigned char) (baud >> 8 );
+	UBRR0L = (unsigned char)baud;
+	UCSR0A |= (1 << U2X0);
+	// set frame format ( 8data, 1stop )
+	UCSR0C = (1 << UCSZ00) | (1 << UCSZ01);
+	// enable received and transmitter
+	UCSR0B = ( 1 << RXEN0 ) | ( 1 << TXEN0 );
+	
 	sei();
 }

@@ -10,5 +10,7 @@ Source\init.c
 
 Source\segDisplay.c
 
+Source\uart.c
+
 Source\util.c
 

@@ -15,6 +15,7 @@ void initTimerA(uint8_t countValue);
 void initTimerB(uint16_t countValue);
 void initLeds();
 void initButtonISR();
+void uart_init(void);
 
 
 

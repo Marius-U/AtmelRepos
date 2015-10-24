@@ -13,6 +13,7 @@
 #include "Header/init.h"
 #include "Header/segDisplay.h"
 #include "Header/util.h"
+#include "Header/uart.h"
 #include "D:/AtmelRepos/PS1/PS1/Header/eeprom.h"
 
 volatile uint8_t count = 0x00u;
@@ -22,11 +23,16 @@ int main(void)
 	initDisplay();
 	initButtonISR();
 	initLeds();
-	initTimerB(0xF424u);
-	initTimerA(0xFFu);	
+	uart_init();
+//	initTimerB(0xF424u);
+//	initTimerA(0xFFu);	
 
 	 while(1)
     {	
+		uart_print("mama\r\n");
+		togle_Led(LED_1);
+		_delay_ms(1000);
+		
     }
 }
 
@@ -38,7 +44,7 @@ ISR (TIMER1_COMPA_vect)
 ISR (TIMER0_COMPA_vect)  
 {
 	count++;
-	if(count >= 100)
+	if(count >= 25)
 	{
 			togle_Led(LED_1);
 			count = 0;

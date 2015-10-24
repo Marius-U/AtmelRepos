@@ -43,6 +43,7 @@ C_SRCS +=  \
 ../Source/eeprom.c \
 ../Source/init.c \
 ../Source/segDisplay.c \
+../Source/uart.c \
 ../Source/util.c
 
 
@@ -57,6 +58,7 @@ PS1.o \
 Source/eeprom.o \
 Source/init.o \
 Source/segDisplay.o \
+Source/uart.o \
 Source/util.o
 
 OBJS_AS_ARGS +=  \
@@ -64,6 +66,7 @@ PS1.o \
 Source/eeprom.o \
 Source/init.o \
 Source/segDisplay.o \
+Source/uart.o \
 Source/util.o
 
 C_DEPS +=  \
@@ -71,6 +74,7 @@ PS1.d \
 Source/eeprom.d \
 Source/init.d \
 Source/segDisplay.d \
+Source/uart.d \
 Source/util.d
 
 C_DEPS_AS_ARGS +=  \
@@ -78,6 +82,7 @@ PS1.d \
 Source/eeprom.d \
 Source/init.d \
 Source/segDisplay.d \
+Source/uart.d \
 Source/util.d
 
 OUTPUT_FILE_PATH +=PS1.elf
@@ -94,6 +99,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
