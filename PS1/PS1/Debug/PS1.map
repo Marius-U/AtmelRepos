@@ -34,10 +34,22 @@ Discarded input sections
                 0x00000000       0x10 Source/uart.o
  .text.uart_print
                 0x00000000       0x36 Source/uart.o
+ .text.uart_receive
+                0x00000000       0x10 Source/uart.o
  .text.uart_dataAvailable
                 0x00000000       0x16 Source/uart.o
  .text.uart_flush
                 0x00000000       0x14 Source/uart.o
+ .debug_info    0x00000000      0x13d Source/uart.o
+ .debug_abbrev  0x00000000       0xd5 Source/uart.o
+ .debug_loc     0x00000000       0xb7 Source/uart.o
+ .debug_aranges
+                0x00000000       0x40 Source/uart.o
+ .debug_ranges  0x00000000       0x30 Source/uart.o
+ .debug_line    0x00000000       0xf6 Source/uart.o
+ .debug_str     0x00000000      0x18c Source/uart.o
+ .comment       0x00000000       0x31 Source/uart.o
+ .debug_frame   0x00000000       0x78 Source/uart.o
  .text          0x00000000        0x0 Source/util.o
  .data          0x00000000        0x0 Source/util.o
  .bss           0x00000000        0x0 Source/util.o
@@ -211,7 +223,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x36e
+.text           0x00000000      0x3aa
  *(.vectors)
  .vectors       0x00000000       0x68 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vector_default
@@ -289,61 +301,63 @@ END GROUP
                 0x000000a2                __vector_8
                 0x000000a2                __vector_10
                 0x000000a2                __vector_16
-                0x000000a2                __vector_18
                 0x000000a2                __vector_20
                 0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x000000a6       0x36 PS1.o
+ .text.main     0x000000a6       0x1e PS1.o
                 0x000000a6                main
+ .text.__vector_18
+                0x000000c4       0x20 PS1.o
+                0x000000c4                __vector_18
  .text.__vector_11
-                0x000000dc       0x1e PS1.o
-                0x000000dc                __vector_11
+                0x000000e4       0x1e PS1.o
+                0x000000e4                __vector_11
  .text.__vector_14
-                0x000000fa       0x60 PS1.o
-                0x000000fa                __vector_14
+                0x00000102       0x60 PS1.o
+                0x00000102                __vector_14
  .text.__vector_4
-                0x0000015a       0xa6 PS1.o
-                0x0000015a                __vector_4
+                0x00000162       0xa6 PS1.o
+                0x00000162                __vector_4
  .text.eeprom_write
-                0x00000200       0x10 Source/eeprom.o
-                0x00000200                eeprom_write
+                0x00000208       0x10 Source/eeprom.o
+                0x00000208                eeprom_write
  .text.eeprom_read
-                0x00000210        0xe Source/eeprom.o
-                0x00000210                eeprom_read
+                0x00000218        0xe Source/eeprom.o
+                0x00000218                eeprom_read
  .text.initDisplay
-                0x0000021e       0x1a Source/init.o
-                0x0000021e                initDisplay
+                0x00000226       0x1a Source/init.o
+                0x00000226                initDisplay
  .text.initLeds
-                0x00000238        0xe Source/init.o
-                0x00000238                initLeds
+                0x00000240        0xe Source/init.o
+                0x00000240                initLeds
  .text.initTimerB
-                0x00000246       0x28 Source/init.o
-                0x00000246                initTimerB
+                0x0000024e       0x28 Source/init.o
+                0x0000024e                initTimerB
  .text.initButtonISR
-                0x0000026e       0x1e Source/init.o
-                0x0000026e                initButtonISR
+                0x00000276       0x1e Source/init.o
+                0x00000276                initButtonISR
  .text.uart_init
-                0x0000028c       0x26 Source/init.o
-                0x0000028c                uart_init
- .text.clear    0x000002b2        0xe Source/segDisplay.o
-                0x000002b2                clear
- .text.display  0x000002c0       0x4e Source/segDisplay.o
-                0x000002c0                display
- .text.uart_receive
-                0x0000030e       0x10 Source/uart.o
-                0x0000030e                uart_receive
- .text.led_ON   0x0000031e       0x18 Source/util.o
-                0x0000031e                led_ON
- .text.led_OFF  0x00000336       0x1a Source/util.o
-                0x00000336                led_OFF
+                0x00000294       0x34 Source/init.o
+                0x00000294                uart_init
+ .text.clear    0x000002c8        0xe Source/segDisplay.o
+                0x000002c8                clear
+ .text.display  0x000002d6       0x4e Source/segDisplay.o
+                0x000002d6                display
+ .text.led_ON   0x00000324       0x18 Source/util.o
+                0x00000324                led_ON
+ .text.led_OFF  0x0000033c       0x1a Source/util.o
+                0x0000033c                led_OFF
  .text.togle_Led
-                0x00000350       0x1a Source/util.o
-                0x00000350                togle_Led
-                0x0000036a                . = ALIGN (0x2)
+                0x00000356       0x1a Source/util.o
+                0x00000356                togle_Led
+ .text.check_Led2
+                0x00000370       0x36 Source/util.o
+                0x00000370                check_Led2
+                0x000003a6                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000036a        0x0 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
-                0x0000036a                _exit
-                0x0000036a                exit
+ .fini9         0x000003a6        0x0 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+                0x000003a6                _exit
+                0x000003a6                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -362,11 +376,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000036a        0x4 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+ .fini0         0x000003a6        0x4 d:/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000036e                _etext = .
+                0x000003aa                _etext = .
 
-.data           0x00800100        0xa load address 0x0000036e
+.data           0x00800100        0xa load address 0x000003aa
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -380,7 +394,7 @@ END GROUP
                 0x0080010a                _edata = .
                 0x0080010a                PROVIDE (__data_end, .)
 
-.bss            0x0080010a        0x2
+.bss            0x0080010a        0x3
                 0x0080010a                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -389,17 +403,19 @@ END GROUP
  .bss.buttonCount
                 0x0080010b        0x1 Source/segDisplay.o
                 0x0080010b                buttonCount
+ .bss.led2      0x0080010c        0x1 Source/util.o
+                0x0080010c                led2
  *(COMMON)
-                0x0080010c                PROVIDE (__bss_end, .)
-                0x0000036e                __data_load_start = LOADADDR (.data)
-                0x00000378                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0080010d                PROVIDE (__bss_end, .)
+                0x000003aa                __data_load_start = LOADADDR (.data)
+                0x000003b4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080010c        0x0
-                0x0080010c                PROVIDE (__noinit_start, .)
+.noinit         0x0080010d        0x0
+                0x0080010d                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0080010c                PROVIDE (__noinit_end, .)
-                0x0080010c                _end = .
-                0x0080010c                PROVIDE (__heap_start, .)
+                0x0080010d                PROVIDE (__noinit_end, .)
+                0x0080010d                _end = .
+                0x0080010d                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -445,7 +461,6 @@ END GROUP
  .comment       0x00000000       0x31 Source/eeprom.o
  .comment       0x00000000       0x31 Source/init.o
  .comment       0x00000000       0x31 Source/segDisplay.o
- .comment       0x00000000       0x31 Source/uart.o
  .comment       0x00000000       0x31 Source/util.o
 
 .note.gnu.build-id
@@ -463,61 +478,55 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x148
+.debug_aranges  0x00000000      0x118
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x38 PS1.o
+                0x00000000       0x40 PS1.o
  .debug_aranges
-                0x00000038       0x28 Source/eeprom.o
+                0x00000040       0x28 Source/eeprom.o
  .debug_aranges
-                0x00000060       0x50 Source/init.o
+                0x00000068       0x50 Source/init.o
  .debug_aranges
-                0x000000b0       0x28 Source/segDisplay.o
+                0x000000b8       0x28 Source/segDisplay.o
  .debug_aranges
-                0x000000d8       0x40 Source/uart.o
- .debug_aranges
-                0x00000118       0x30 Source/util.o
+                0x000000e0       0x38 Source/util.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x8fd
+.debug_info     0x00000000      0x7e0
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x342 PS1.o
- .debug_info    0x00000342       0xdc Source/eeprom.o
- .debug_info    0x0000041e      0x195 Source/init.o
- .debug_info    0x000005b3      0x128 Source/segDisplay.o
- .debug_info    0x000006db      0x13d Source/uart.o
- .debug_info    0x00000818       0xe5 Source/util.o
+ .debug_info    0x00000000      0x30a PS1.o
+ .debug_info    0x0000030a       0xdc Source/eeprom.o
+ .debug_info    0x000003e6      0x195 Source/init.o
+ .debug_info    0x0000057b      0x128 Source/segDisplay.o
+ .debug_info    0x000006a3      0x13d Source/util.o
 
-.debug_abbrev   0x00000000      0x595
+.debug_abbrev   0x00000000      0x4c2
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x1d9 PS1.o
- .debug_abbrev  0x000001d9       0x8b Source/eeprom.o
- .debug_abbrev  0x00000264       0xf0 Source/init.o
- .debug_abbrev  0x00000354       0xe3 Source/segDisplay.o
- .debug_abbrev  0x00000437       0xd5 Source/uart.o
- .debug_abbrev  0x0000050c       0x89 Source/util.o
+ .debug_abbrev  0x00000000      0x1b7 PS1.o
+ .debug_abbrev  0x000001b7       0x8b Source/eeprom.o
+ .debug_abbrev  0x00000242       0xf0 Source/init.o
+ .debug_abbrev  0x00000332       0xe3 Source/segDisplay.o
+ .debug_abbrev  0x00000415       0xad Source/util.o
 
-.debug_line     0x00000000      0x623
+.debug_line     0x00000000      0x558
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x19d PS1.o
- .debug_line    0x0000019d       0xb7 Source/eeprom.o
- .debug_line    0x00000254      0x147 Source/init.o
- .debug_line    0x0000039b       0xdd Source/segDisplay.o
- .debug_line    0x00000478       0xf6 Source/uart.o
- .debug_line    0x0000056e       0xb5 Source/util.o
+ .debug_line    0x00000000      0x1a4 PS1.o
+ .debug_line    0x000001a4       0xb7 Source/eeprom.o
+ .debug_line    0x0000025b      0x148 Source/init.o
+ .debug_line    0x000003a3       0xdd Source/segDisplay.o
+ .debug_line    0x00000480       0xd8 Source/util.o
 
-.debug_frame    0x00000000      0x2a4
+.debug_frame    0x00000000      0x25c
  *(.debug_frame)
- .debug_frame   0x00000000       0xf4 PS1.o
- .debug_frame   0x000000f4       0x34 Source/eeprom.o
- .debug_frame   0x00000128       0x84 Source/init.o
- .debug_frame   0x000001ac       0x3c Source/segDisplay.o
- .debug_frame   0x000001e8       0x78 Source/uart.o
- .debug_frame   0x00000260       0x44 Source/util.o
+ .debug_frame   0x00000000      0x114 PS1.o
+ .debug_frame   0x00000114       0x34 Source/eeprom.o
+ .debug_frame   0x00000148       0x84 Source/init.o
+ .debug_frame   0x000001cc       0x3c Source/segDisplay.o
+ .debug_frame   0x00000208       0x54 Source/util.o
 
-.debug_str      0x00000000      0x2f2
+.debug_str      0x00000000      0x2b2
  *(.debug_str)
  .debug_str     0x00000000      0x204 PS1.o
                                 0x238 (size before relaxing)
@@ -527,19 +536,16 @@ END GROUP
                                 0x1ac (size before relaxing)
  .debug_str     0x0000025b       0x37 Source/segDisplay.o
                                 0x178 (size before relaxing)
- .debug_str     0x00000292       0x4f Source/uart.o
-                                0x18c (size before relaxing)
- .debug_str     0x000002e1       0x11 Source/util.o
-                                0x14a (size before relaxing)
+ .debug_str     0x00000292       0x20 Source/util.o
+                                0x15a (size before relaxing)
 
-.debug_loc      0x00000000      0x3c7
+.debug_loc      0x00000000      0x321
  *(.debug_loc)
- .debug_loc     0x00000000      0x1fd PS1.o
- .debug_loc     0x000001fd       0x24 Source/eeprom.o
- .debug_loc     0x00000221       0x5f Source/init.o
- .debug_loc     0x00000280       0x4e Source/segDisplay.o
- .debug_loc     0x000002ce       0xb7 Source/uart.o
- .debug_loc     0x00000385       0x42 Source/util.o
+ .debug_loc     0x00000000      0x20e PS1.o
+ .debug_loc     0x0000020e       0x24 Source/eeprom.o
+ .debug_loc     0x00000232       0x5f Source/init.o
+ .debug_loc     0x00000291       0x4e Source/segDisplay.o
+ .debug_loc     0x000002df       0x42 Source/util.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -559,14 +565,13 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xe8
+.debug_ranges   0x00000000       0xc8
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x28 PS1.o
- .debug_ranges  0x00000028       0x18 Source/eeprom.o
- .debug_ranges  0x00000040       0x40 Source/init.o
- .debug_ranges  0x00000080       0x18 Source/segDisplay.o
- .debug_ranges  0x00000098       0x30 Source/uart.o
- .debug_ranges  0x000000c8       0x20 Source/util.o
+ .debug_ranges  0x00000000       0x30 PS1.o
+ .debug_ranges  0x00000030       0x18 Source/eeprom.o
+ .debug_ranges  0x00000048       0x40 Source/init.o
+ .debug_ranges  0x00000088       0x18 Source/segDisplay.o
+ .debug_ranges  0x000000a0       0x28 Source/util.o
 
 .debug_macro
  *(.debug_macro)

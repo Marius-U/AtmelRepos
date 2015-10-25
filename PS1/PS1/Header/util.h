@@ -16,5 +16,8 @@
 void led_ON(uint8_t led);
 void led_OFF(uint8_t led);
 void togle_Led(uint8_t led);
+void check_Led2(void);
+
+extern volatile uint8_t led2;
 
 #endif /* UTIL_H_ */

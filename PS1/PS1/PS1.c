@@ -26,26 +26,21 @@ int main(void)
 	uart_init();
 	initTimerB(0xF424u);
 //	initTimerA(0xFFu);	
-	uint8_t a = 0x00;
+
 	 while(1)
     {	
-		a = uart_receive();
-		if(a == 0x41 || a == 0x61)
-		{
-			led_ON(LED_2);
-			a = 0x00;
-		}
-		if(a == 0x53 || a == 0x73)
-		{
-			led_OFF(LED_2);
-			a = 0x00;
-		}
+		check_Led2();
     }
+}
+
+ISR (USART_RX_vect)
+{
+	led2 = UDR0;      
 }
 
 ISR (TIMER1_COMPA_vect)
 {
-		PORTD ^= (1 << PORTD7);
+	PORTD ^= (1 << PORTD7);
 }
 
 ISR (TIMER0_COMPA_vect)  
@@ -53,13 +48,13 @@ ISR (TIMER0_COMPA_vect)
 	count++;
 	if(count >= 25)
 	{
-			togle_Led(LED_1);
-			count = 0;
+		togle_Led(LED_1);
+		count = 0;
 	}
 }
 
 ISR(PCINT1_vect) {
-	_delay_ms(80); //debounce
+	_delay_ms(100); //debounce
 	if (PINC & (0x01u)) 
 	{
 		//Button was pressed!
