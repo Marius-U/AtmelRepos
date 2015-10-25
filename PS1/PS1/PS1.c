@@ -24,15 +24,22 @@ int main(void)
 	initButtonISR();
 	initLeds();
 	uart_init();
-//	initTimerB(0xF424u);
+	initTimerB(0xF424u);
 //	initTimerA(0xFFu);	
-
+	uint8_t a = 0x00;
 	 while(1)
     {	
-		uart_print("mama\r\n");
-		togle_Led(LED_1);
-		_delay_ms(1000);
-		
+		a = uart_receive();
+		if(a == 0x41 || a == 0x61)
+		{
+			led_ON(LED_2);
+			a = 0x00;
+		}
+		if(a == 0x53 || a == 0x73)
+		{
+			led_OFF(LED_2);
+			a = 0x00;
+		}
     }
 }
 
