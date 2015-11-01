@@ -40,11 +40,15 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../PS1.c \
+../Source/adc.c \
 ../Source/eeprom.c \
 ../Source/init.c \
+../Source/isr.c \
+../Source/scheduler.c \
 ../Source/segDisplay.c \
 ../Source/uart.c \
-../Source/util.c
+../Source/util.c \
+../Source/virtualTimers.c
 
 
 PREPROCESSING_SRCS += 
@@ -55,35 +59,51 @@ ASM_SRCS +=
 
 OBJS +=  \
 PS1.o \
+Source/adc.o \
 Source/eeprom.o \
 Source/init.o \
+Source/isr.o \
+Source/scheduler.o \
 Source/segDisplay.o \
 Source/uart.o \
-Source/util.o
+Source/util.o \
+Source/virtualTimers.o
 
 OBJS_AS_ARGS +=  \
 PS1.o \
+Source/adc.o \
 Source/eeprom.o \
 Source/init.o \
+Source/isr.o \
+Source/scheduler.o \
 Source/segDisplay.o \
 Source/uart.o \
-Source/util.o
+Source/util.o \
+Source/virtualTimers.o
 
 C_DEPS +=  \
 PS1.d \
+Source/adc.d \
 Source/eeprom.d \
 Source/init.d \
+Source/isr.d \
+Source/scheduler.d \
 Source/segDisplay.d \
 Source/uart.d \
-Source/util.d
+Source/util.d \
+Source/virtualTimers.d
 
 C_DEPS_AS_ARGS +=  \
 PS1.d \
+Source/adc.d \
 Source/eeprom.d \
 Source/init.d \
+Source/isr.d \
+Source/scheduler.d \
 Source/segDisplay.d \
 Source/uart.d \
-Source/util.d
+Source/util.d \
+Source/virtualTimers.d
 
 OUTPUT_FILE_PATH +=PS1.elf
 
@@ -99,6 +119,14 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
+
+
 
 
 

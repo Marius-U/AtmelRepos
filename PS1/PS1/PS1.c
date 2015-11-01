@@ -14,62 +14,22 @@
 #include "Header/segDisplay.h"
 #include "Header/util.h"
 #include "Header/uart.h"
+#include "Header/adc.h"
 #include "D:/AtmelRepos/PS1/PS1/Header/eeprom.h"
 
-volatile uint8_t count = 0x00u;
 
 int main(void)
 {	
 	initDisplay();
 	initButtonISR();
 	initLeds();
+	adcInit();
 	uart_init();
 	initTimerB(0xF424u);
-//	initTimerA(0xFFu);	
+	initTimerA();	
 
 	 while(1)
     {	
-		check_Led2();
     }
 }
 
-ISR (USART_RX_vect)
-{
-	led2 = UDR0;      
-}
-
-ISR (TIMER1_COMPA_vect)
-{
-	PORTD ^= (1 << PORTD7);
-}
-
-ISR (TIMER0_COMPA_vect)  
-{
-	count++;
-	if(count >= 25)
-	{
-		togle_Led(LED_1);
-		count = 0;
-	}
-}
-
-ISR(PCINT1_vect) {
-	_delay_ms(100); //debounce
-	if (PINC & (0x01u)) 
-	{
-		//Button was pressed!
-		buttonCount = eeprom_read(0x00u);
-		if(buttonCount < 10)
-		{	
-			buttonCount++;
-			eeprom_write(0x00u,buttonCount);
-			display(buttonCount);
-		}
-		else
-		{
-			buttonCount = 0x00;
-			eeprom_write(0x00u, buttonCount);
-			display(buttonCount);
-		}
-	} 
-}

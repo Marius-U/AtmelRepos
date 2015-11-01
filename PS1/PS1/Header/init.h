@@ -11,12 +11,12 @@
 
 void initDisplay();
 void initButton();
-void initTimerA(uint8_t countValue);
+void initTimerA();
 void initTimerB(uint16_t countValue);
 void initLeds();
 void initButtonISR();
 void uart_init(void);
-
+void adcInit();
 
 
 #endif /* INIT_H_ */

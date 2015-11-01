@@ -38,13 +38,13 @@ void initTimerB(uint16_t countValue)
 	TIMSK1 |= (1 << OCIE1A);
 	sei(); 
 }
-void initTimerA(uint8_t countValue)
+void initTimerA()
 {
 	cli();
-	TCCR0A |= (1 << WGM01);		// Set the Timer Mode to CTC
-	TCCR0B |= (1 << CS02) ;     //| (1 << CS00); 		// set prescaler to 1024 and start the timer
-	OCR0A   = countValue;		// Set the value that you want to count to
-	TIMSK0 |= (1 << OCIE0A);    //Set the ISR COMPA vect
+	TCCR0A |= (1 << WGM01);						// Set the Timer Mode to CTC
+	TCCR0B |= (1 << CS02);						// set prescaler to 256 and start the timer (0.016 ms => 62.5 incremts = 1ms) 
+	OCR0A   = 0x3F;								// Count to 1.008 ms
+	TIMSK0 |= (1 << OCIE0A);					//Set the ISR COMPA vect
 	sei();
 }
 void initButtonISR()
@@ -57,6 +57,14 @@ void initButtonISR()
 	PCICR  |= (1 << PCIE1);
 	PCMSK1 |= (1 << PCINT8);
 	sei();
+}
+
+void adcInit()
+{
+	ADMUX |= (1 << REFS0);    // use AVcc as the reference
+	ADMUX &= ~(1 << ADLAR);   // clear for 10 bit resolution
+	ADCSRA |= (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);    // 128 prescale for 8Mhz
+	ADCSRA |= (1 << ADEN);    // Enable the ADC
 }
 
 void uart_init(void)
