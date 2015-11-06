@@ -17,6 +17,7 @@ void initLeds();
 void initButtonISR();
 void uart_init(void);
 void adcInit();
-
+void initPeriodical();
+void initPWM();
 
 #endif /* INIT_H_ */

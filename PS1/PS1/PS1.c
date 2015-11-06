@@ -8,26 +8,28 @@
 
 #include <avr/io.h>
 #define F_CPU 16000000UL
-#include <util/delay.h>
 #include <avr/interrupt.h>
 #include "Header/init.h"
 #include "Header/segDisplay.h"
 #include "Header/util.h"
 #include "Header/uart.h"
 #include "Header/adc.h"
+#include "Header/virtualTimers.h"
 #include "D:/AtmelRepos/PS1/PS1/Header/eeprom.h"
 
 
 int main(void)
 {	
+	initVirtualTimers();
 	initDisplay();
 	initButtonISR();
 	initLeds();
 	adcInit();
 	uart_init();
-	initTimerB(0xF424u);
-	initTimerA();	
-
+	initPWM();
+	initPeriodical();
+	//initTimerB(0xF424u);
+	
 	 while(1)
     {	
     }

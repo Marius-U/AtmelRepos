@@ -38,6 +38,29 @@ void initTimerB(uint16_t countValue)
 	TIMSK1 |= (1 << OCIE1A);
 	sei(); 
 }
+void initPWM()
+{
+	OCR0B = 0x00;
+	// set PWM for 00% duty cycle
+
+	TCCR0A |= (1 << COM0B1);
+	// set none-inverting mode
+
+	TCCR0A |= (1 << WGM01) | (1 << WGM00);
+	// set fast PWM Mode
+
+	TCCR0B |= (1 << CS01);
+	// set prescaler to 8 and starts PWM
+}
+void initPeriodical()
+{
+		cli();
+		TCCR1B |= (1 << WGM12);
+		TCCR1B |= (1 << CS12);
+		OCR1A   = 0x3F;
+		TIMSK1 |= (1 << OCIE1A);
+		sei();
+}
 void initTimerA()
 {
 	cli();
