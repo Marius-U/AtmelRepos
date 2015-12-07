@@ -16,12 +16,12 @@
 #include "D:/AtmelRepos/PS1/PS1/Header/scheduler.h"
 #include "D:\AtmelRepos\PS1\PS1\Header\virtualTimers.h"
 
-uint16_t prescTemp ;
+float prescTemp ;
 volatile uint16_t count;
 uint8_t ledMode;
 uint8_t flags[10] = {0,0,0,0,0,0,0,0,0,0};
 float sum = 0x00;
-uint16_t temp = 0x0000u;
+float temp = 0x0000f;
 uint8_t  tempCount;
 	
 volatile uint8_t buttonCount;
@@ -42,6 +42,7 @@ void scheduler(void)
 		}
 		uart_print("VALUE: ");
 		adc_printValue(temp);
+		
 		uart_print("PRECS: ");
 		adc_printValue(prescTemp);
 	}
@@ -66,6 +67,7 @@ void scheduler(void)
 		if(flags[BUTTON_SHORT_PRESS_FLAG])
 		{
 			startNewVirtualTimer(30,BUTTON_MODULE,incrementDisplay,1);
+			startNewVirtualTimer(3000,BUTTON_MODULE,resetDisplay,1);
 			flags[BUTTON_SHORT_PRESS_FLAG] = FLAG_CLEAR;
 		}
 	}
@@ -78,19 +80,20 @@ void scheduler(void)
 		}
 		else
 		{
-			temp = sum / 25;
+			temp = adcToCelsius(sum / 24);
 			sum = 0x00u;
 			tempCount = 0x00u;
 		}
 	}
 	 if((count % 10 == 0) && (count >= 10)) // every 10 ms check temperature
 	{
-		prescTemp = adcGetPrescription(adcRead(REF_TEMP))+50;
-		if(temp > (prescTemp))
+		prescTemp = adcGetPrescription(adcRead(REF_TEMP)+25); // +25  = + 5 grade C
+		
+		if(temp > prescTemp)
 		{
 			led_ON(LED_2);
 		}
-		else if(temp < (prescTemp))
+		else if(temp < prescTemp)
 		{
 			led_OFF(LED_2);
 		}
@@ -113,7 +116,7 @@ void checkVirtualTimers()
 	
 	while(10 > index)
 	{
-		if(timers[index].flag)
+		if(timers[index].timerStarted)
 		{
 			if (timers[index].period)
 			{
@@ -121,14 +124,15 @@ void checkVirtualTimers()
 			}
 			else if((TIMER_EXPIRED == timers[index].period) && (0x00u != timers[index].f))
 			{
-				
+				//if timer expired call the callback function
 				timers[index].f();
-				timers[index].flag = TIMER_EXPIRED;
+				timers[index].timerStarted = TIMER_EXPIRED;
 			}
-			else
+			else if(TIMER_EXPIRED == timers[index].period)
 			{
+				//if timer expired and there is no callback function, set action flag
 				flags[timers[index].module] = FLAG_SET;
-				timers[index].flag = TIMER_EXPIRED;
+				timers[index].timerStarted = TIMER_EXPIRED;
 			}
 		}
 		index += 0x01u;
@@ -153,4 +157,13 @@ void incrementDisplay()
 			display(buttonCount);
 		}
 	}
+}
+void resetDisplay()
+{
+		if (PINC & (0x01u))
+		{
+			buttonCount = 0x00u;
+			eeprom_write(0x00u,buttonCount);
+			display(buttonCount);
+		}
 }

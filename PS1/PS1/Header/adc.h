@@ -16,8 +16,8 @@ extern uint16_t prescTemp;
 
 uint16_t adcRead(uint8_t adctouse);
 void adcInit();
-void adc_printValue(uint16_t rawAdc);
-uint16_t adcToCelsius(uint16_t rawADC);
-uint16_t adcGetPrescription(uint16_t rawADC);
+void adc_printValue(float rawAdc);
+float adcToCelsius(uint16_t rawADC);
+float adcGetPrescription(uint16_t rawADC);
 
 #endif /* ADC_H_ */

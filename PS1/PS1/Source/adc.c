@@ -32,19 +32,21 @@ uint16_t adcRead(uint8_t input)
 
 	return value;
 }
-uint16_t adcToCelsius(uint16_t rawADC)
+float adcToCelsius(uint16_t rawADC)
 {
-	return (rawADC * 50000)/1023; // 5V resolution, LM35 Linear + 10-mV/°C 
+	return (rawADC * 0.488f); // 5V resolution, LM35 Linear + 10-mV/°C 
 }
-uint16_t adcGetPrescription(uint16_t rawADC)
+float adcGetPrescription(uint16_t rawADC)
 {
-	return (rawADC * 5000)/1023;
+	return (rawADC * 0.145f);
 }
-void adc_printValue(uint16_t rawAdc)
+void adc_printValue(float temp)
 {
-	uint16_t value = adcToCelsius(rawAdc);
+	uint16_t value = (uint16_t)adcToCelsius(temp * 100);
 	
-	uint8_t uartData[4];
+	uint8_t uartData[5];
+	uartData[4] = value%10;
+	value /= 10;
 	uartData[3] = value%10;
 	value /= 10;
 	uartData[2] = value%10;
@@ -57,18 +59,20 @@ void adc_printValue(uint16_t rawAdc)
 	{
 		uart_transmit(uartData[0]+48);
 		uart_transmit(uartData[1]+48);
-		uart_transmit(',');
 		uart_transmit(uartData[2]+48);
+		uart_transmit(',');
 		uart_transmit(uartData[3]+48);
+		uart_transmit(uartData[4]+48);
 		uart_transmit('\r');
 		uart_transmit('\n');
 	}
 	else
 	{
 		uart_transmit(uartData[1]+48);
-		uart_transmit(',');
 		uart_transmit(uartData[2]+48);
+		uart_transmit(',');
 		uart_transmit(uartData[3]+48);
+		uart_transmit(uartData[4]+48);
 		uart_transmit('\r');
 		uart_transmit('\n');
 	}
