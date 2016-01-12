@@ -6,8 +6,8 @@
  */ 
 
 #include <avr/io.h>
-#include "D:\AtmelRepos\PS1\PS1\Header\uart.h"
-#include "D:\AtmelRepos\PS1\PS1\Header\adc.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\uart.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\adc.h"
 
 uint16_t adcRead(uint8_t input)
 {
@@ -63,8 +63,6 @@ void adc_printValue(float temp)
 		uart_transmit(',');
 		uart_transmit(uartData[3]+48);
 		uart_transmit(uartData[4]+48);
-		uart_transmit('\r');
-		uart_transmit('\n');
 	}
 	else
 	{
@@ -73,7 +71,5 @@ void adc_printValue(float temp)
 		uart_transmit(',');
 		uart_transmit(uartData[3]+48);
 		uart_transmit(uartData[4]+48);
-		uart_transmit('\r');
-		uart_transmit('\n');
 	}
 }

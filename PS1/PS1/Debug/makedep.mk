@@ -22,3 +22,5 @@ Source\util.c
 
 Source\virtualTimers.c
 
+src\ASF\common\boards\user_board\init.c
+

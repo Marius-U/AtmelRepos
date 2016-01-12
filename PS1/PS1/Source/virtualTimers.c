@@ -5,9 +5,9 @@
  *  Author: Marius
  */ 
 #include <avr/io.h>
-#include "D:\AtmelRepos\PS1\PS1\Header\virtualTimers.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/scheduler.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/util.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\virtualTimers.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\scheduler.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\util.h"
 
 virtualTimer_T timers[10];
 
@@ -58,7 +58,12 @@ uint8_t stopVirtualTimer(uint8_t module, callback fcn, uint8_t flag)
 {
 	uint8_t index = 0;
 	while(index < 11)
-	{index++;
+	{
+		if(timers[index].module == module && timers[index].f == fcn)
+		{
+			timers[index].timerStarted = TIMER_EMPTY;
+		}
+		index++;
 	}
 	return index;
 }

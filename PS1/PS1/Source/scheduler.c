@@ -7,14 +7,14 @@
 #include <avr/io.h>
 #define F_CPU 16000000UL
 #include <avr/interrupt.h>
-#include "D:/AtmelRepos/PS1/PS1/Header/init.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/segDisplay.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/util.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/uart.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/adc.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/eeprom.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/scheduler.h"
-#include "D:\AtmelRepos\PS1\PS1\Header\virtualTimers.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\init.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\segDisplay.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\util.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\uart.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\adc.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\eeprom.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\scheduler.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\virtualTimers.h"
 
 float prescTemp ;
 volatile uint16_t count;
@@ -25,6 +25,8 @@ float temp = 0x0000f;
 uint8_t  tempCount;
 	
 volatile uint8_t buttonCount;
+volatile uint8_t led3State ;
+volatile uint8_t connected ;
 
 void scheduler(void)
 {
@@ -39,12 +41,8 @@ void scheduler(void)
 		else
 		{
 			ledMode = 0x00u;
-		}
-		uart_print("VALUE: ");
-		adc_printValue(temp);
 		
-		uart_print("PRECS: ");
-		adc_printValue(prescTemp);
+		}
 	}
 	if((count % 4) &&(count >=4))
 	{	
@@ -67,7 +65,6 @@ void scheduler(void)
 		if(flags[BUTTON_SHORT_PRESS_FLAG])
 		{
 			startNewVirtualTimer(30,BUTTON_MODULE,incrementDisplay,1);
-			startNewVirtualTimer(3000,BUTTON_MODULE,resetDisplay,1);
 			flags[BUTTON_SHORT_PRESS_FLAG] = FLAG_CLEAR;
 		}
 	}
@@ -104,7 +101,24 @@ void scheduler(void)
 	}
 	if((count % 100 == 0) && (count > 100))
 	{
-
+		if(connected)
+		{
+			adc_printValue(temp);
+			uart_transmit(' ');
+			adc_printValue(prescTemp);
+			uart_transmit(' ');
+			led3State = getLedState();
+			if(led3State == 0x41 || led3State == 0x61)
+			{
+				uart_print("Aprins ");	
+			}
+			else if(led3State == 0x53 || led3State == 0x73 || led3State == 0x00)
+			{
+				uart_print("Stins ");	
+			}
+			uart_transmit(eeprom_read(0x00u)+48);
+			uart_print("\r\n");
+		}	
 	}
 
 		checkVirtualTimers();
@@ -156,6 +170,11 @@ void incrementDisplay()
 			eeprom_write(0x00u, buttonCount);
 			display(buttonCount);
 		}
+		startNewVirtualTimer(3000,BUTTON_MODULE,resetDisplay,1);
+	}
+	else
+	{
+		stopVirtualTimer(BUTTON_MODULE,resetDisplay,1);
 	}
 }
 void resetDisplay()

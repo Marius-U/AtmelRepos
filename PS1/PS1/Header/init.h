@@ -9,15 +9,15 @@
 #ifndef INIT_H_
 #define INIT_H_
 
-void initDisplay();
-void initButton();
-void initTimerA();
+void initDisplay(void);
+void initButton(void);
+void initTimerA(void);
 void initTimerB(uint16_t countValue);
-void initLeds();
-void initButtonISR();
+void initLeds(void);
+void initButtonISR(void);
 void uart_init(void);
-void adcInit();
-void initPeriodical();
-void initPWM();
+void adcInit(void);
+void initPeriodical(void);
+void initPWM(void);
 
 #endif /* INIT_H_ */

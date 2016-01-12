@@ -17,6 +17,7 @@ void led_ON(uint8_t led);
 void led_OFF(uint8_t led);
 void togle_Led(uint8_t led);
 void check_Led3(void);
+uint8_t getLedState(void);
 
 extern volatile uint8_t led2;
 

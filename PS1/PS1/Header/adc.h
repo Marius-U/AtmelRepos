@@ -12,10 +12,9 @@
 #define TEMP_SENZOR 0x01u
 #define REF_TEMP    0x03u
 
-extern uint16_t prescTemp;
 
 uint16_t adcRead(uint8_t adctouse);
-void adcInit();
+void adcInit(void);
 void adc_printValue(float rawAdc);
 float adcToCelsius(uint16_t rawADC);
 float adcGetPrescription(uint16_t rawADC);

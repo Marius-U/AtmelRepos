@@ -15,7 +15,7 @@
 #include "Header/uart.h"
 #include "Header/adc.h"
 #include "Header/virtualTimers.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/eeprom.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\eeprom.h"
 
 
 int main(void)
@@ -28,7 +28,6 @@ int main(void)
 	uart_init();
 	initPWM();
 	initPeriodical();
-	//initTimerB(0xF424u);
 	
 	 while(1)
     {	

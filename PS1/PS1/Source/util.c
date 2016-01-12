@@ -6,7 +6,7 @@
  */ 
 
 #include <avr/io.h>
-#include "D:\AtmelRepos\PS1\PS1\Header\util.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\util.h"
 
 volatile uint8_t led3 ;
 
@@ -30,11 +30,15 @@ void check_Led3(void)
 	if(led3 == 0x41 || led3 == 0x61)
 	{
 		led_ON(LED_3);
-		led3 = 0x00;
+		//led3 = 0x00;
 	}
 	if(led3 == 0x53 || led3 == 0x73)
 	{
 		led_OFF(LED_3);
-		led3 = 0x00;
+		//led3 = 0x00;
 	}
+}
+uint8_t getLedState(void)
+{
+	return led3;
 }

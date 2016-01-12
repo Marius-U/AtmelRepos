@@ -28,6 +28,6 @@ extern virtualTimer_T timers[10];
 
 uint8_t startNewVirtualTimer(uint16_t time, uint8_t module, callback fnc, uint8_t flag);
 uint8_t stopVirtualTimer(uint8_t module, callback fcn, uint8_t flag);
-void initVirtualTimers();
+void initVirtualTimers(void);
 
 #endif /* VIRTUALTIMERS_H_ */

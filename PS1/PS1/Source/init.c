@@ -6,9 +6,9 @@
  */ 
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "D:\AtmelRepos\PS1\PS1\Header\init.h"
-#include "D:\AtmelRepos\PS1\PS1\Header/segDisplay.h"
-#include "D:/AtmelRepos/PS1/PS1/Header/eeprom.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\init.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\segDisplay.h"
+#include "D:\Repos\AtmelRepos\PS1\PS1\Header\eeprom.h"
 
 void initDisplay()
 {

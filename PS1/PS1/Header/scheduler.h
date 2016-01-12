@@ -32,8 +32,8 @@
 extern uint8_t flags[10];		
 
 void scheduler(void);
-void incrementDisplay();
-void checkVirtualTimers();
-void resetDisplay();
+void incrementDisplay(void);
+void checkVirtualTimers(void);
+void resetDisplay(void);
 
 #endif /* SCHEDULER_H_ */

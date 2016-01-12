@@ -12,6 +12,6 @@
 extern volatile uint8_t buttonCount;
 
 void display(uint8_t value);
-void clear();
+void clear(void);
 
 #endif /* SEGDISPLAY_H_ */
