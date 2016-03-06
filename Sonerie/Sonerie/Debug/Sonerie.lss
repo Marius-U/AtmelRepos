@@ -1,0 +1,96 @@
+
+Sonerie.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000004e  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .comment      00000030  00000000  00000000  000000a2  2**0
+                  CONTENTS, READONLY
+  2 .debug_aranges 00000020  00000000  00000000  000000d2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   00000145  00000000  00000000  000000f2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 000000d3  00000000  00000000  00000237  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   00000137  00000000  00000000  0000030a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000024  00000000  00000000  00000444  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    0000015e  00000000  00000000  00000468  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_ranges 00000010  00000000  00000000  000005c6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	09 c0       	rjmp	.+18     	; 0x14 <__ctors_end>
+   2:	0e c0       	rjmp	.+28     	; 0x20 <__bad_interrupt>
+   4:	0d c0       	rjmp	.+26     	; 0x20 <__bad_interrupt>
+   6:	0c c0       	rjmp	.+24     	; 0x20 <__bad_interrupt>
+   8:	0b c0       	rjmp	.+22     	; 0x20 <__bad_interrupt>
+   a:	0a c0       	rjmp	.+20     	; 0x20 <__bad_interrupt>
+   c:	09 c0       	rjmp	.+18     	; 0x20 <__bad_interrupt>
+   e:	08 c0       	rjmp	.+16     	; 0x20 <__bad_interrupt>
+  10:	07 c0       	rjmp	.+14     	; 0x20 <__bad_interrupt>
+  12:	06 c0       	rjmp	.+12     	; 0x20 <__bad_interrupt>
+
+00000014 <__ctors_end>:
+  14:	11 24       	eor	r1, r1
+  16:	1f be       	out	0x3f, r1	; 63
+  18:	cf e9       	ldi	r28, 0x9F	; 159
+  1a:	cd bf       	out	0x3d, r28	; 61
+  1c:	02 d0       	rcall	.+4      	; 0x22 <main>
+  1e:	15 c0       	rjmp	.+42     	; 0x4a <_exit>
+
+00000020 <__bad_interrupt>:
+  20:	ef cf       	rjmp	.-34     	; 0x0 <__vectors>
+
+00000022 <main>:
+#define F_CPU 9600000UL
+#include <util/delay.h>
+
+int main(void)
+{
+	DDRB |= (1 << DDB3) | (1 << DDB4);
+  22:	87 b3       	in	r24, 0x17	; 23
+  24:	88 61       	ori	r24, 0x18	; 24
+  26:	87 bb       	out	0x17, r24	; 23
+	
+    while(1)
+    {
+        PORTB |= (1 << PORTB4);
+  28:	c4 9a       	sbi	0x18, 4	; 24
+		PORTB &= ~(1 << PORTB3);
+  2a:	c3 98       	cbi	0x18, 3	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  2c:	8f eb       	ldi	r24, 0xBF	; 191
+  2e:	9d e5       	ldi	r25, 0x5D	; 93
+  30:	01 97       	sbiw	r24, 0x01	; 1
+  32:	f1 f7       	brne	.-4      	; 0x30 <main+0xe>
+  34:	00 c0       	rjmp	.+0      	; 0x36 <main+0x14>
+  36:	00 00       	nop
+		_delay_ms(10);
+		PORTB |= (1 << PORTB3);
+  38:	c3 9a       	sbi	0x18, 3	; 24
+		PORTB &= ~(1 << PORTB4);
+  3a:	c4 98       	cbi	0x18, 4	; 24
+  3c:	8f eb       	ldi	r24, 0xBF	; 191
+  3e:	9d e5       	ldi	r25, 0x5D	; 93
+  40:	01 97       	sbiw	r24, 0x01	; 1
+  42:	f1 f7       	brne	.-4      	; 0x40 <__SREG__+0x1>
+  44:	00 c0       	rjmp	.+0      	; 0x46 <__SREG__+0x7>
+  46:	00 00       	nop
+  48:	ef cf       	rjmp	.-34     	; 0x28 <main+0x6>
+
+0000004a <_exit>:
+  4a:	f8 94       	cli
+
+0000004c <__stop_program>:
+  4c:	ff cf       	rjmp	.-2      	; 0x4c <__stop_program>

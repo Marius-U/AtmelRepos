@@ -24,7 +24,7 @@ uint16_t adcRead(uint8_t input)
 
 	ADCSRA |= (1 << ADSC);    // Start the ADC conversion
 
-	while(ADCSRA & (1 << ADSC));      // Thanks T, this line waits for the ADC to finish
+	while(ADCSRA & (1 << ADSC)); 
 
 
 	value = ADCL;
@@ -42,7 +42,7 @@ float adcGetPrescription(uint16_t rawADC)
 }
 void adc_printValue(float temp)
 {
-	uint16_t value = (uint16_t)adcToCelsius(temp * 100);
+	uint16_t value = (uint16_t)(temp * 100);
 	
 	uint8_t uartData[5];
 	uartData[4] = value%10;

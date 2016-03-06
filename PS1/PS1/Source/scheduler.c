@@ -44,7 +44,7 @@ void scheduler(void)
 		
 		}
 	}
-	if((count % 4) &&(count >=4))
+	if((count % 4 == 0) &&(count >=4))
 	{	
 		if((LED_MODE_INCREMENT == ledMode) && (OCR0B < 255))
 		{
@@ -62,6 +62,7 @@ void scheduler(void)
 		{
 			OCR0B = 0x00u;
 		}
+		
 		if(flags[BUTTON_SHORT_PRESS_FLAG])
 		{
 			startNewVirtualTimer(30,BUTTON_MODULE,incrementDisplay,1);
@@ -152,6 +153,7 @@ void checkVirtualTimers()
 		index += 0x01u;
 	}
 }
+
 void incrementDisplay()
 {
 	if (PINC & (0x01u))
